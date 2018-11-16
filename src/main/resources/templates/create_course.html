@@ -7,35 +7,61 @@
 
 </head>
 <body>
-<h1>Create new course</h1>
-<form method="post" class="form-group" th:action="@{/course/create}">
-    <label>Name of the course (Danish)</label>
-    <input type="text" class="form-control" th:field="${course.courseNameInDanish}" placeholder="Full Stack NodeJs"/>
-    <label>Name of the course (English)</label>
-    <input type="text" class="form-control" th:field="${course.courseNameInEnglish}"/>
-    <label>Semester</label>
-    <input type="text" class="form-control" th:field="${course.semester}"/>
-    <label>Class code</label>
-    <input type="text" class="form-control" th:field="${course.classCode}"/>
-    <label>Study Programme</label>
-    <input type="text" class="form-control" th:field="${course.studyProgram}"/>
-    <label>Mandatory or Elective</label>
-    <input type="text" class="form-control" th:field="${course.mandatory}"/>
-    <label>ECTS</label>
-    <input type="number" min="0" class="form-control" th:field="${course.ects}"/>
-    <label>Course language</label>
-    <input type="text" class="form-control" th:field="${course.courselanguage}"/>
-    <label>Minimum # of students</label>
-    <input type="text" class="form-control" th:field="${course.minimumStudents}"/>
-    <label>Expected # of students</label>
-    <input type="text" class="form-control" th:field="${course.expectedStudents}"/>
-    <label>Maximum # of students</label>
-    <input type="text" class="form-control" th:field="${course.maximumStudents}"/>
-    <label>Prerequisites</label>
-    <input type="text" class="form-control" th:field="${course.prerequisites}"/>
+<div class="container">
+    <h1>Create new course</h1>
+    <form method="post" class="form-group" th:action="@{/course/create}">
+        <div class="row">
+            <label class="col">Name of the course (Danish)</label>
+            <input type="text" class="form-control col-md-4" th:field="${course.courseNameInDanish}"
+                   placeholder="Full Stack NodeJs"/>
+            <label class="col">Name of the course (English)</label>
+            <input type="text" class="form-control col-md-4" th:field="${course.courseNameInEnglish}"/>
+
+        </div>
+
+        <div class="row">
+            <label class="col">Semester</label>
+            <input type="text" class="form-control col-md-4" th:field="${course.semester}"/>
+            <label class="col">Class code</label>
+            <input type="text" class="form-control col-md-4" th:field="${course.classCode}"/>
+        </div>
 
 
-    <button type="submit">Create course</button>
-</form>
+        <label>Study Programme</label>
+        <input type="text" class="form-control" th:field="${course.studyProgram}"/>
+        <label>Mandatory or Elective</label>
+        <input type="text" class="form-control" th:field="${course.mandatory}"/>
+        <label>ECTS</label>
+        <input type="number" min="0" class="form-control" th:field="${course.ects}"/>
+        <label>Course language</label>
+        <input type="text" class="form-control" th:field="${course.courselanguage}"/>
+        <label>Minimum # of students</label>
+        <input type="number" min="0" class="form-control" th:field="${course.minimumStudents}"/>
+        <label>Expected # of students</label>
+        <input type="number" min="0" class="form-control" th:field="${course.expectedStudents}"/>
+        <label>Maximum # of students</label>
+        <input type="number" min="0" class="form-control" th:field="${course.maximumStudents}"/>
+        <label>Prerequisites</label>
+        <input type="text" class="form-control" th:field="${course.prerequisites}"/>
+        <label>Learning outcome</label>
+        <input type="text" class="form-control" th:field="${course.learningOutcome}"/>
+        <label>Content</label>
+        <input type="text" class="form-control" th:field="${course.content}"/>
+        <label>Learning activities</label>
+        <input type="text" class="form-control" th:field="${course.learningActivities}"/>
+        <label>Exam form</label>
+        <input type="text" class="form-control" th:field="${course.examForm}"/>
+        <label>Teachers</label>
+        <select class="form-control">
+            <option>Teacher 1</option>
+            <option>Teacher 2</option>
+            <option>Teacher 3</option>
+        </select>
+        <br/>
+        <button type="submit" class="btn btn-success">Create course</button>
+
+    </form>
+</div>
+
 </body>
 </html>

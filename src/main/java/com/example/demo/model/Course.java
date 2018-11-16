@@ -1,15 +1,14 @@
 package com.example.demo.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class Course {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long courseId;
+    private Long Id;
     private String courseNameInDanish;
     private String courseNameInEnglish;
     private String studyProgram;
@@ -28,21 +27,25 @@ public class Course {
 
     private String semester;
     private String classCode;
-//    private List<Teacher> teachers;
-//    private List<Student> students;
+
+    @Transient
+    private List<User> users;
+
+    //Teachers
+
+    //Students
 
 
     public Course() {
     }
 
 
-
-    public Long getCourseId() {
-        return courseId;
+    public Long getId() {
+        return Id;
     }
 
-    public void setCourseId(Long courseId) {
-        this.courseId = courseId;
+    public void setId(Long id) {
+        this.Id = id;
     }
 
     public String getCourseNameInDanish() {
@@ -157,22 +160,6 @@ public class Course {
         this.examForm = examForm;
     }
 
-//    public List<Teacher> getTeachers() {
-//        return teachers;
-//    }
-//
-//    public void setTeachers(List<Teacher> teachers) {
-//        this.teachers = teachers;
-//    }
-//
-//    public List<Student> getStudents() {
-//        return students;
-//    }
-//
-//    public void setStudents(List<Student> students) {
-//        this.students = students;
-//    }
-
 
     public String getSemester() {
         return semester;
@@ -189,4 +176,5 @@ public class Course {
     public void setClassCode(String classCode) {
         this.classCode = classCode;
     }
+
 }
