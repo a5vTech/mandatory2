@@ -1,0 +1,27 @@
+.loginError{
+    background-color: #ff00004d;
+    border-radius: 0.25rem;
+    margin-top: 15px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+
+}
+
+.logoutSuccess{
+    background-color: #0080006b;
+    border-radius: 0.25rem;
+    margin-top: 15px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+
+}
+
+
+.marginBottom15px{
+    margin-bottom: 15px;
+}
+
+.centerDiv{
+    margin: 0 auto;
+    width: 50%;
+}

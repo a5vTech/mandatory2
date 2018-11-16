@@ -2,19 +2,72 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
 <head>
+    <meta charset="UTF-8"/>
     <title>Spring Security Example </title>
+    <th:block th:include="fragments/head :: headInclude"/>
+
 </head>
 <body>
-<div th:if="${param.error}">
-    Invalid username and password.
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12 text-center">
+            <h1>KEA - Københavns erhversakedemi</h1>
+        </div>
+    </div>
+    <form th:action="@{/login}" method="post" class="form-group">
+        <div class="container centerDiv">
+
+
+            <div class="row">
+                <div class="col-md-12">
+                    <label>Email</label>
+                    <input type="text" name="username" class="form-control" placeholder="Email (ex. john@stud.kea.dk)"/>
+                </div>
+
+            </div>
+            <div class="row">
+
+                <div class="col-md-12">
+                    <label> Password</label>
+                    <input type="password" name="password" class="form-control marginBottom15px"/>
+                </div>
+
+            </div>
+
+            <div>
+
+                <div class="row" th:if="${param.error}">
+
+                    <div class="col-md-12  text-center  marginBottom15px"><p class="loginError">Invalid username and
+                        password.</p></div>
+
+
+                </div>
+
+                <div class="row" th:if="${param.logout}">
+                    <div class="col-md-12  text-center  marginBottom15px"><p class="logoutSuccess">You have been logged
+                        out.</p></div>
+                </div>
+
+
+                <div class="row">
+                    <div class="col-md-4"></div>
+                    <div class="col-md-4 text-center">
+                        <button type="reset" class="btn btn-danger">Cancel</button>
+                        <button type="submit" class="btn btn-success">Sign in</button>
+                    </div>
+                    <div class="col-md-4"></div>
+                </div>
+            </div>
+
+
+        </div>
+    </form>
+
+    <form method="post" action="/logout">
+        <button type="submit">logout</button>
+    </form>
 </div>
-<div th:if="${param.logout}">
-    You have been logged out.
-</div>
-<form th:action="@{/login}" method="post">
-    <div><label> User Name : <input type="text" name="username"/> </label></div>
-    <div><label> Password: <input type="password" name="password"/> </label></div>
-    <div><input type="submit" value="Sign In"/></div>
-</form>
 </body>
 </html>

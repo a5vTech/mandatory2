@@ -6,6 +6,7 @@ import com.example.demo.model.User;
 import com.example.demo.repository.CourseRepository;
 import com.example.demo.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.stereotype.Repository;
@@ -26,10 +27,18 @@ public class LoginController {
     @Autowired
     PasswordEncoder passwordEncoder;
 
-    @GetMapping({"/login"})
+    @GetMapping({"/","/login"})
     public String login() {
+
+
+        return "login";
+    }
+
+    public void createTestUser() {
         User user = new User();
         user.setFirstName("Jesper");
+        user.setEmail("jesp688a@stud.kea.dk");
+        user.setRole("ROLE_Teacher");
         user.setPassword(passwordEncoder.encode("1234"));
         Course c = new Course();
         c.setClassCode("DAT17C");
@@ -38,11 +47,10 @@ public class LoginController {
 
         userRepository.save(user);
 
-        System.out.println(user.getFirstName() + " ----- " + user.getCourses().get(0).getClassCode());
-
-
-        return "login";
     }
 
-
+    @GetMapping("/denied")
+    public String denied(){
+        return "denied";
+    }
 }
