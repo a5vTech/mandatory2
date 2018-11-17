@@ -27,7 +27,7 @@ public class LoginController {
     @Autowired
     PasswordEncoder passwordEncoder;
 
-    @GetMapping({"/","/login"})
+    @GetMapping({"/", "/login"})
     public String login() {
 
 
@@ -36,9 +36,9 @@ public class LoginController {
 
     public void createTestUser() {
         User user = new User();
-        user.setFirstName("Jesper");
-        user.setEmail("jesp688a@stud.kea.dk");
-        user.setRole("ROLE_Teacher");
+        user.setFirstName("Mikkel");
+        user.setEmail("mikk@stud.kea.dk");
+        user.setRole("ROLE_STUDENT");
         user.setPassword(passwordEncoder.encode("1234"));
         Course c = new Course();
         c.setClassCode("DAT17C");
@@ -50,7 +50,7 @@ public class LoginController {
     }
 
     @GetMapping("/denied")
-    public String denied(){
+    public String denied() {
         return "denied";
     }
 }

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Student home</title>
+    <th:block th:include="fragments/head :: headInclude"/>
+</head>
+<body>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12 text-center">
+            <h1>Welcome to the student homepage!</h1>
+        </div>
+    </div>
+
+    <div class="row">
+        <!--My courses-->
+        <div class="container col-md-4">
+            <div class="row">
+                <h1 class="text-center col-md-12">My courses</h1>
+            </div>
+            <div class="row">
+                <div class="col-md-3 text-center">Course</div>
+                <div class="col-md-3 text-center">Class code</div>
+                <div class="col-md-3 text-center">Mandatory</div>
+                <div class="col-md-3 text-center"></div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-3 text-center">Full Stack NodeJs</div>
+                <div class="col-md-3 text-center">DAT17C-NODEJS</div>
+                <div class="col-md-3 text-center"><input type="checkbox"  checked disabled/></div>
+                <div class="col-md-3 text-center"><button type="submit" class="btn">Open course</button></div>
+            </div>
+
+        </div>
+
+        <!--Find courses-->
+        <div class="container col-md-4">
+            <div class="row">
+                <h1 class="text-center col-md-12">Find courses</h1>
+            </div>
+        </div>
+        <!--Awaiting acceptance-->
+        <div class="container col-md-4">
+            <div class="row">
+                <h1 class="text-center col-md-12">Awaiting acceptance</h1>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+</div>
+</body>
+</html>

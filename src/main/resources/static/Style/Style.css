@@ -21,7 +21,9 @@
     margin-bottom: 15px;
 }
 
+.loginWidth{
+    width: 50%;
+}
 .centerDiv{
     margin: 0 auto;
-    width: 50%;
 }
