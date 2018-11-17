@@ -20,20 +20,23 @@
             <div class="row">
                 <h1 class="text-center col-md-12">My courses</h1>
             </div>
+
             <div class="row">
                 <div class="col-md-3 text-center">Course</div>
                 <div class="col-md-3 text-center">Class code</div>
                 <div class="col-md-3 text-center">Mandatory</div>
                 <div class="col-md-3 text-center"></div>
             </div>
-
-            <div class="row">
-                <div class="col-md-3 text-center">Full Stack NodeJs</div>
-                <div class="col-md-3 text-center">DAT17C-NODEJS</div>
-                <div class="col-md-3 text-center"><input type="checkbox"  checked disabled/></div>
-                <div class="col-md-3 text-center"><button type="submit" class="btn">Open course</button></div>
+            <div id="myCourses">
+                <div class="row">
+                    <div class="col-md-3 text-center">Full Stack NodeJs</div>
+                    <div class="col-md-3 text-center">DAT17C-NODEJS</div>
+                    <div class="col-md-3 text-center"><input type="checkbox" checked disabled/></div>
+                    <div class="col-md-3 text-center">
+                        <button type="button" class="btn">Open course</button>
+                    </div>
+                </div>
             </div>
-
         </div>
 
         <!--Find courses-->
@@ -41,6 +44,18 @@
             <div class="row">
                 <h1 class="text-center col-md-12">Find courses</h1>
             </div>
+            <div class="row">
+                <div class="col-md-3 text-center">Course</div>
+                <div class="col-md-3 text-center">Class code</div>
+                <div class="col-md-3 text-center">Mandatory</div>
+                <div class="col-md-3 text-center"></div>
+            </div>
+
+            <div id="AllCourses">
+                <!--Courses here, addedd by JS-->
+            </div>
+
+
         </div>
         <!--Awaiting acceptance-->
         <div class="container col-md-4">
@@ -53,5 +68,45 @@
 
 </div>
 </div>
+<script type="text/javascript">
+    $(document).ready(function () {
+        getAllCourses();
+        setInterval(getAllCourses, 1000);
+    });
+
+    function getAllCourses() {
+        var myCourses = $('#AllCourses');
+        $.ajax({
+            type: 'GET',
+            url: '/api/courses',
+            success: function (courses) {
+                console.log(courses);
+                myCourses.empty();
+                $.each(courses, function (i, course) {
+                    var mandatory = '';
+                    console.log(course.mandatory)
+                    if (course.mandatory == true) {
+                        mandatory = 'checked';
+                    }
+
+
+                    myCourses.append('<div class="row">' +
+                        '<div class="col-md-3">' + course.courseNameInEnglish + '</div>' +
+                        '<div class="col-md-3">' + course.classCode + '</div>' +
+                        '<div class="col-md-3 text-center"><input type="checkbox"' + mandatory + ' disabled/></div>' +
+                        '<div class="col-md-3">' +
+                        '<button type="button" class="btn" onclick="getMycourses()">Open course</button>' +
+                        '</div>' +
+                        '</div>');
+
+                });
+            }
+
+
+        });
+    }
+</script>
+
+
 </body>
 </html>
