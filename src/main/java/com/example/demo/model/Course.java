@@ -27,9 +27,8 @@ public class Course {
 
     private String semester;
     private String classCode;
-
-    @Transient
-    private List<User> users;
+    @ManyToMany(mappedBy = "courses")
+    private List<User> user = new ArrayList<>();
 
     //Teachers
 
@@ -177,4 +176,11 @@ public class Course {
         this.classCode = classCode;
     }
 
+    public List<User> getUsers() {
+        return user;
+    }
+
+    public void setUsers(List<User> users) {
+        this.user = users;
+    }
 }

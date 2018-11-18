@@ -29,19 +29,36 @@ public class LoginController {
 
     @GetMapping({"/", "/login"})
     public String login() {
-
-
         return "login";
     }
 
+    @GetMapping("/test")
+    @ResponseBody
+    public String test() {
+        User user = userRepository.findByEmail("jesp688a@stud.kea.dk");
+        Course cour = courseRepository.findByClassCode("DAT20C");
+        for (User courUser : cour.getUsers()) {
+            System.out.println("User: " + courUser.getEmail());
+        }
+
+        for (Course c : user.getCourses()) {
+            System.out.println("Class name " + c.getClassCode());
+        }
+
+
+        return "test";
+    }
+
     public void createTestUser() {
-        User user = new User();
-        user.setFirstName("Mikkel");
-        user.setEmail("mikk@stud.kea.dk");
-        user.setRole("ROLE_STUDENT");
-        user.setPassword(passwordEncoder.encode("1234"));
+
+        User user = userRepository.findByEmail("jesp688a@stud.kea.dk");
+//        User user = new User();
+//        user.setFirstName("Mikkel");
+//        user.setEmail("1mikk@stud.kea.dk");
+//        user.setRole("ROLE_STUDENT");
+//        user.setPassword(passwordEncoder.encode("1234"));
         Course c = new Course();
-        c.setClassCode("DAT17C");
+        c.setClassCode("DAT21C");
 
         user.getCourses().add(c);
 

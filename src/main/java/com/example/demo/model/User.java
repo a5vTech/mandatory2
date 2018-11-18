@@ -1,6 +1,8 @@
 package com.example.demo.model;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -14,15 +16,17 @@ public class User {
     private String firstName;
     private String lastName;
     private String email;
+    @JsonIgnore
     private String password;
     private Boolean enabled = true;
     private String role;
 
 
+
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(name = "course_users", joinColumns = {@JoinColumn(name = "user_id")},
             inverseJoinColumns = {@JoinColumn(name = "course_id")})
-
+    @JsonIgnore //Removes field from JSON
     private List<Course> courses = new ArrayList<>();
 
     public User() {
