@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
 <head>
     <meta charset=" UTF-8"/>
     <title>Create course</title>
@@ -7,27 +8,21 @@
 
 </head>
 <body>
-
+<nav th:replace="fragments/navbar :: navbar"></nav>
 <div class="container">
+    <p th:text="${user}"></p>
+
     <h1>Create new course</h1>
-    <form method="post" class="form-group" th:action="@{/course/create}">
-        <div class="row">
-            <label class="col">Name of the course (Danish)</label>
-            <input type="text" class="form-control col-md-4" th:field="${course.courseNameInDanish}"
-                   placeholder="Full Stack NodeJs"/>
-            <label class="col">Name of the course (English)</label>
-            <input type="text" class="form-control col-md-4" th:field="${course.courseNameInEnglish}"/>
-
-        </div>
-
-        <div class="row">
-            <label class="col">Semester</label>
-            <input type="text" class="form-control col-md-4" th:field="${course.semester}"/>
-            <label class="col">Class code</label>
-            <input type="text" class="form-control col-md-4" th:field="${course.classCode}"/>
-        </div>
-
-
+    <form method="post" class="form-group" th:action="@{/teacher/createCourse}">
+        <label>Name of the course (Danish)</label>
+        <input type="text" class="form-control " th:field="${course.courseNameInDanish}"
+               placeholder="Full Stack NodeJs"/>
+        <label>Name of the course (English)</label>
+        <input type="text" class="form-control " th:field="${course.courseNameInEnglish}"/>
+        <label>Semester</label>
+        <input type="text" class="form-control" th:field="${course.semester}"/>
+        <label>Class code</label>
+        <input type="text" class="form-control" th:field="${course.classCode}"/>
         <label>Study Programme</label>
         <input type="text" class="form-control" th:field="${course.studyProgram}"/>
         <label>Mandatory or Elective</label>
@@ -59,6 +54,7 @@
             <option>Teacher 3</option>
         </select>
         <br/>
+        <input type="text" hidden="hidden" th:value="${user}" name="user"/>
         <button type="submit" class="btn btn-success">Create course</button>
 
     </form>

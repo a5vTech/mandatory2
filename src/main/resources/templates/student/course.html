@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Course</title>
+    <th:block th:include="fragments/head :: headInclude"/>
+</head>
+<body>
+<nav th:replace="fragments/navbar :: navbar"></nav>
+
+
+
+<div class="container">
+    <!--Header-->
+    <div class="row">
+        <div class="col-md-12">
+            <h1 class="text-center">Course</h1>
+        </div>
+    </div>
+    <!--END HEADER-->
+
+    <!--Course header-->
+    <div class="row">
+        <div class="col-md-12"></div>
+    </div>
+    <!--END course header-->
+    <!--Course-->
+    <div class="row">
+        <label class="col">Name of course (Danish)</label>
+        <div class="col-md-12"><input type="text" class="form-control" th:value="${course.courseNameInDanish}"/></div>
+    </div>
+
+    <div class="row">
+        <label class="col">Name of course (English)</label>
+        <div class="col-md-12"><input type="text" class="form-control" th:value="${course.courseNameInEnglish}"/></div>
+    </div>
+
+    <div class="row">
+        <label class="col">Semester</label>
+        <div class="col-md-12"><input type="text" class="form-control" th:value="${course.semester}"/></div>
+    </div>
+
+    <div class="row">
+        <label class="col">Class code</label>
+        <div class="col-md-12"><input type="text" class="form-control" th:value="${course.classCode}"/></div>
+    </div>
+
+    <div class="row">
+        <label class="col">Study Programme</label>
+        <div class="col-md-12"><input type="text" class="form-control" th:value="${course.studyProgram}"/></div>
+    </div>
+
+    <div class="row">
+        <label class="col">Mandatory</label>
+        <div class="col-md-12"><input type="text" class="form-control" th:value="${course.mandatory}"/></div>
+    </div>
+
+    <div class="row">
+        <label class="col">ECTS</label>
+        <div class="col-md-12"><input type="text" class="form-control" th:value="${course.ects}"/></div>
+    </div>
+
+    <div class="row">
+        <label class="col">Course language</label>
+        <div class="col-md-12"><input type="text" class="form-control" th:value="${course.courselanguage}"/></div>
+    </div>
+
+    <div class="row">
+        <label class="col">Minimum # of students</label>
+        <div class="col-md-12"><input type="text" class="form-control" th:value="${course.minimumStudents}"/></div>
+    </div>
+
+    <div class="row">
+        <label class="col">Expected # of students</label>
+        <div class="col-md-12"><input type="text" class="form-control" th:value="${course.expectedStudents}"/></div>
+    </div>
+
+    <div class="row">
+        <label class="col">Maximum # of students</label>
+        <div class="col-md-12"><input type="text" class="form-control" th:value="${course.maximumStudents}"/></div>
+    </div>
+
+    <div class="row">
+        <label class="col">Prerequisites</label>
+        <div class="col-md-12"><input type="text" class="form-control" th:value="${course.prerequisites}"/></div>
+    </div>
+
+    <div class="row">
+        <label class="col">Learning outcome</label>
+        <div class="col-md-12"><input type="text" class="form-control" th:value="${course.learningOutcome}"/></div>
+    </div>
+
+    <div class="row">
+        <label class="col">Content</label>
+        <div class="col-md-12"><input type="text" class="form-control" th:value="${course.content}"/></div>
+    </div>
+
+    <div class="row">
+        <label class="col">Learning activities</label>
+        <div class="col-md-12"><input type="text" class="form-control" th:value="${course.learningActivities}"/></div>
+    </div>
+
+    <div class="row">
+        <label class="col">Exam form</label>
+        <div class="col-md-12"><input type="text" class="form-control" th:value="${course.examForm}"/></div>
+    </div>
+
+    <div class="row" th:each="teacher : ${course.users}" th:if="${teacher.getRole()} == 'ROLE_TEACHER'">
+        <label class="col">Teachers</label>
+        <div class="col-md-12"><input type="text" class="form-control" th:value="${teacher.firstName} + ' ' + ${teacher.lastName}"/></div>
+    </div>
+
+
+</div>
+
+
+</body>
+</html>

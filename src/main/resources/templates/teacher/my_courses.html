@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head>
+    <meta charset="UTF-8"/>
+    <title>My courses</title>
+    <th:block th:include="fragments/head :: headInclude"/>
+
+</head>
+<body>
+
+<!--Navbar-->
+<nav th:replace="fragments/navbar :: navbar"></nav>
+
+<input type="text" hidden="hidden" th:value="${username}" id="username"/>
+<!--My courses-->
+<div class="container">
+    <div class="row">
+        <h1 class="text-center col-md-12">My courses</h1>
+    </div>
+
+    <div class="row">
+        <div class="col text-center">Course</div>
+        <div class="col text-center">Class code</div>
+        <div class="col text-center">Semester</div>
+
+        <div class="col text-center">Mandatory</div>
+        <div class="col text-center"></div>
+    </div>
+    <div id="myCourses">
+        <div class="row" th:each="course : ${courses}">
+            <div class="col" th:text="${course.courseNameInEnglish}">Full Stack NodeJs</div>
+            <div class="col" th:text="${course.classCode}"></div>
+            <div class="col text-center" th:text="${course.semester}"></div>
+            <div class="col text-center"><input type="checkbox" th:checked="${course.mandatory}" disabled/></div>
+            <div class="col">
+                <a th:href="'/student/course/'+${course.id}">
+                    <button type="button" class="btn">Open course</button>
+                </a>
+            </div>
+        </div>
+    </div>
+    <!--end myCourses div-->
+
+
+</div>
+
+
+</body>
+</html>

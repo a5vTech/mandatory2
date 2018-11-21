@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Find courses</title>
+    <th:block th:include="fragments/head :: headInclude"/>
+
+</head>
+<body>
+<nav th:replace="fragments/navbar :: navbar"></nav>
+
+<h1>Find courses</h1>
+<div class="container col-md-4">
+    <div class="row">
+        <h1 class="text-center col-md-12">Find courses</h1>
+    </div>
+    <div class="row">
+        <div class="col-md-3 text-center">Course</div>
+        <div class="col-md-3 text-center">Class code</div>
+        <div class="col-md-3 text-center">Mandatory</div>
+        <div class="col-md-3 text-center"></div>
+    </div>
+
+    <div id="AllCourses">
+        <!--Courses here, addedd by JS-->
+    </div>
+</div>
+
+<table></table>
+</body>
+</html>

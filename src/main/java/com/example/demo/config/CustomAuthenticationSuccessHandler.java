@@ -18,9 +18,9 @@ public class CustomAuthenticationSuccessHandler implements AuthenticationSuccess
         Set<String> roles = AuthorityUtils.authorityListToSet(authentication.getAuthorities());
 
         if(roles.contains("ROLE_TEACHER")){
-            httpServletResponse.sendRedirect("/course/create");
+            httpServletResponse.sendRedirect("/teacher/createCourse");
         }else if(roles.contains("ROLE_STUDENT")) {
-            httpServletResponse.sendRedirect("/student/home");
+            httpServletResponse.sendRedirect("/student/myCourses");
         }else{
             httpServletResponse.sendRedirect("/course/create");
         }

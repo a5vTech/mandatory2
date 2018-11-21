@@ -20,7 +20,9 @@ public class User {
     private String password;
     private Boolean enabled = true;
     private String role;
-
+    @Lob
+    @Column(name="image", nullable=false, columnDefinition="mediumblob")
+    private byte[] image;
 
 
     @ManyToMany(cascade = CascadeType.ALL)
@@ -104,4 +106,13 @@ public class User {
 //    public void setRoles(Set<UserRoles> roles) {
 //        this.roles = roles;
 //    }
+
+
+    public byte[] getImage() {
+        return image;
+    }
+
+    public void setImage(byte[] image) {
+        this.image = image;
+    }
 }
