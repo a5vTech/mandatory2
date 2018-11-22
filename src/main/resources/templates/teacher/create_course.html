@@ -43,9 +43,9 @@
                 <div class="col-md-6">
                     <label class="inputLabel">Mandatory or Elective</label>
                     <!--<input required type="text" class="textInput" th:field="${course.mandatory}"/>-->
-                    <select class="textInput" data-placeholder="Mandatory or elective" name="mandatory">
-                        <option value="Mandatory">Mandatory</option>
-                        <option value="Mandatory">Elective</option>
+                    <select class="textInput" data-placeholder="Mandatory or elective" th:field="${course.mandatory}">
+                        <option value="true">Mandatory</option>
+                        <option value="false">Elective</option>
                     </select>
                 </div>
             </div>
@@ -57,7 +57,7 @@
                 <div class="col-md-6">
                     <label class="inputLabel">Course language</label>
                     <!--<input required type="text" class="textInput" th:field="${course.courselanguage}"/>-->
-                    <select class="textInput" data-placeholder="Choose a Language...">
+                    <select class="textInput" data-placeholder="Choose a Language... " th:field="${course.courselanguage}">
                         <option value="Afrikanns">Afrikanns</option>
                         <option value="Albanian">Albanian</option>
                         <option value="Arabic">Arabic</option>
@@ -176,27 +176,9 @@
             <div class="row">
                 <div class="col-md-6">
                     <label class="inputLabel">Teachers</label>
-                    <select multiple class="textInput multiSelect">
-                        <option>Teacher 1</option>
-                        <option>Teacher 2</option>
-                        <option>Teacher 3</option>
-                        <option>Teacher 1</option>
-                        <option>Teacher 2</option>
-                        <option>Teacher 3</option>
-                        <option>Teacher 1</option>
-                        <option>Teacher 2</option>
-                        <option>Teacher 3</option>
-                        <option>Teacher 1</option>
-                        <option>Teacher 2</option>
-                        <option>Teacher 3</option>
-                        <option>Teacher 1</option>
-                        <option>Teacher 2</option>
-                        <option>Teacher 3</option>
-                        <option>Teacher 1</option>
-                        <option>Teacher 2</option>
-                        <option>Teacher 3</option>
+                    <select multiple class="textInput multiSelect" name="teachersListString">
+                        <option th:value="${teacher.email}" th:each="teacher: ${teachers}" th:text="${teacher.firstName} + ' ' + ${teacher.lastName} + ' : ' + ${teacher.email}" th:if="${teacher.email} != ${#authentication.getName()}"></option>
                     </select>
-                    <input required type="text" hidden="hidden" th:value="${user}" name="user"/>
                 </div>
             </div>
             <div class="row">

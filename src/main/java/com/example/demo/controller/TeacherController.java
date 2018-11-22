@@ -28,8 +28,14 @@ public class TeacherController {
 //        System.out.println(username);
 //        model.addAttribute("username", username);
         model.addAttribute("course", new Course());
+
+
+        List<User> teachers = userRepository.findAllByRole("ROLE_TEACHER");
+        model.addAttribute("teachers", teachers);
+
         return "teacher/create_course";
     }
+
 
     @GetMapping("/teacher/myCourses")
     public String teacherCourses(Model model) {
@@ -41,12 +47,27 @@ public class TeacherController {
     }
 
     @PostMapping("/teacher/createCourse")
-    public String createCourse(@ModelAttribute Course course, @RequestParam String user) {
-        System.out.println(user);
-        User currentuser = userRepository.findByEmail(user);
-        System.out.println(currentuser.getFirstName());
+    public String createCourse(@ModelAttribute Course course, @RequestParam String teachersListString) {
+        User currentuser = userRepository.findByEmail(SecurityContextHolder.getContext().getAuthentication().getName());
+
+
+        String[] teacherMails = teachersListString.split(",");
+
+        for (String email : teacherMails) {
+            User user = userRepository.findByEmail(email);
+            course.getUsers().add(user);
+            user.getCourses().add(course);
+        }
+        course.getUsers().add(currentuser);
         currentuser.getCourses().add(course);
-        userRepository.save(currentuser);
+
+
+        System.out.println(course.getCourselanguage());
+        System.out.println(course.getMandatory());
+        System.out.println(teachersListString);
+        System.out.println(course.getUsers().size());
+
+        courseRepository.save(course);
 
 
         return "redirect:/teacher/myCourses";
@@ -57,7 +78,7 @@ public class TeacherController {
     public String settings(Model model) {
         User currentuser = userRepository.findByEmail(SecurityContextHolder.getContext().getAuthentication().getName());
         model.addAttribute("user", currentuser);
-        model.addAttribute("course",new Course());
+        model.addAttribute("course", new Course());
 
         return "settings";
     }

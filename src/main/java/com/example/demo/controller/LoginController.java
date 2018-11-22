@@ -37,6 +37,7 @@ public class LoginController {
 
     @GetMapping({"/", "/login"})
     public String login(Model model) {
+
         return "login";
     }
 
@@ -81,16 +82,17 @@ public class LoginController {
 
     public void createTestUser() {
 
-        User user = userRepository.findByEmail("mikk@stud.kea.dk");
-//        User user = new User();
-//        user.setFirstName("Mikkel");
-//        user.setEmail("1mikk@stud.kea.dk");
-//        user.setRole("ROLE_STUDENT");
-//        user.setPassword(passwordEncoder.encode("1234"));
-        Course c = new Course();
-        c.setClassCode("DAT21C");
-
-        user.getCourses().add(c);
+//        User user = userRepository.findByEmail("mikk@stud.kea.dk");
+        User user = new User();
+        user.setFirstName("Constantin");
+        user.setLastName("Alexandru Gheorghiasa");
+        user.setEmail("coag@kea.dk");
+        user.setRole("ROLE_TEACHER");
+        user.setPassword(passwordEncoder.encode("1234"));
+//        Course c = new Course();
+//        c.setClassCode("DAT21C");
+//
+//        user.getCourses().add(c);
 
         userRepository.save(user);
 
