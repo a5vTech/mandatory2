@@ -15,6 +15,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.SessionAttributes;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -22,6 +23,7 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.util.ArrayList;
 
+@SessionAttributes("username")
 @Controller
 //@RequestMapping(path = "/logins")
 public class LoginController {
@@ -35,7 +37,6 @@ public class LoginController {
 
     @GetMapping({"/", "/login"})
     public String login(Model model) {
-        model.addAttribute("username", SecurityContextHolder.getContext().getAuthentication().getName());
         return "login";
     }
 

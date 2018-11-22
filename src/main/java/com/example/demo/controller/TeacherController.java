@@ -9,13 +9,11 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@SessionAttributes("username")
 @Controller
 public class TeacherController {
     @Autowired
@@ -27,8 +25,8 @@ public class TeacherController {
     public String createCourse(Model model) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         String username = auth.getName();
-        System.out.println(username);
-        model.addAttribute("user", username);
+//        System.out.println(username);
+//        model.addAttribute("username", username);
         model.addAttribute("course", new Course());
         return "teacher/create_course";
     }
@@ -36,10 +34,9 @@ public class TeacherController {
     @GetMapping("/teacher/myCourses")
     public String teacherCourses(Model model) {
         String username = SecurityContextHolder.getContext().getAuthentication().getName();
-        model.addAttribute("username",username);
+        model.addAttribute("username", username);
         List<Course> courses = userRepository.findByEmail(username).getCourses();
-        model.addAttribute("courses",courses);
-
+        model.addAttribute("courses", courses);
         return "teacher/my_courses";
     }
 
@@ -53,5 +50,15 @@ public class TeacherController {
 
 
         return "redirect:/teacher/myCourses";
+    }
+
+
+    @GetMapping("/teacher/settings")
+    public String settings(Model model) {
+        User currentuser = userRepository.findByEmail(SecurityContextHolder.getContext().getAuthentication().getName());
+        model.addAttribute("user", currentuser);
+        model.addAttribute("course",new Course());
+
+        return "settings";
     }
 }

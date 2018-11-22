@@ -2,45 +2,50 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8"/>
-    <title>Title</title>
+    <title>Login</title>
 </head>
 <body>
-<nav class="navbar navbar-expand-lg navbarStyle" th:fragment="navbar">
-    <div class="navbarLogoDiv">
-        <a href="#"><img class="navbar-brand navbarLogo"
-                         src="https://kea.dk/images/resources/logo-main-black-single.png"/></a>
-    </div>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
-            aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNavDropdown">
-        <ul class="navbar-nav">
-            <li class="nav-item active">
-                <a class="nav-link" href="#">Efteruddannelser <span class="sr-only">(current)</span></a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">Kurser & fag</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">Inspiration</a>
-            </li>
-            <li class="nav-item">
+<div th:fragment="navbar">
+    <div class="topBar">Københavns Erhvervsakademi</div>
+    <nav class="navbar-dark navbar navbar-expand-lg navbarStyle">
+        <div class="navbarLogoDiv">
+            <a href="#"><img class="navbar-brand navbarLogo"
+                             src="https://kea.dk/images/resources/logo-main-black-single.png"/></a>
+        </div>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
+                aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+            <ul class="navbar-nav">
+                <li class="nav-item active">
+                    <a class="nav-link" href="#">My courses <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Pending courses</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Find courses</a>
+                </li>
+                <li class="nav-item">
 
-            </li>
-            <li class="nav-item dropdown navbarSettings">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" data-hover="dropdown" aria-haspopup="true" aria-expanded="false" th:utext="${username} + '<img id=&quot;profilePicture&quot; src=&quot;/Images/user.png&quot;/>'">
-
-                </a>
-                <div class="dropdown-menu navDropdown dropdown-menu-right" id="navDropdownMenu" aria-labelledby="navbarDropdownMenuLink">
-                    <a class="dropdown-item" href="#">Action</a>
-                    <a class="dropdown-item" href="#">Another action</a>
-                    <a class="dropdown-item" href="#">Something else here</a>
-                </div>
-            </li>
-        </ul>
-    </div>
-</nav>
-
+                </li>
+                <li class="nav-item dropdown navbarSettings">
+                <span class="nav-link userSpan" id="navbarDropdownMenuLink" aria-haspopup="true" aria-expanded="false">
+                    <a class="nav-link userName inlineFlex" aria-haspopup="true" aria-expanded="false"
+                       th:text="${#authentication.getName()}">
+                    </a>
+                    <i class="fas fa-user userIcon"></i>
+                </span>
+                    <div class="dropdown-menu navDropdown dropdown-menu-right" id="navDropdownMenu"
+                         aria-labelledby="navbarDropdownMenuLink">
+                        <a class="dropdown-item" href="#">Settings</a>
+                        <a class="dropdown-item" href="/logout">Log out</a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </nav>
+</div>
 </body>
 </html>

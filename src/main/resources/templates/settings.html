@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Settings</title>
+    <th:block th:include="fragments/head :: headInclude"/>
+
+</head>
+<body>
+<!--Navbar-->
+<nav th:replace="fragments/navbar :: navbar"></nav>
+<div class="container">
+    <!--Header-->
+    <div class="text-center">
+        <h1 class="settingsHeader">Settings</h1>
+    </div>
+    <!--Contents-->
+    <div class="settingsBox">
+        <form method="post" th:action="@{/teacher/settings}">
+            <div class="row">
+                <div class="col-md-6">
+                    <label class="inputLabel">First name</label>
+                    <input class="textInput" type="text" th:field="${user.firstName}"
+                           placeholder="First name"/>
+                </div>
+                <div class="col-md-6">
+                    <label class="inputLabel">Last name</label>
+                    <input type="text" class="textInput" th:field="${user.lastName}"/>
+                </div>
+            </div>
+            <div class="row ">
+                <div class="col-md-6">
+                    <label class="inputLabel">Phone</label>
+                    <input type="text" class="textInput" th:field="${user.phone}"/>
+                </div>
+                <div class="col-md-6">
+                    <label class="inputLabel">Email</label>
+                    <input type="text" class="textInput" th:field="${user.email}"/>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <label class="inputLabel">Old password</label>
+                    <input type="text" class="textInput" th:field="${user.phone}"/>
+                    <div class="col-md-6"></div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <label class="inputLabel">New password</label>
+                    <input id="newPassBox" type="text" class="textInput" th:field="${user.phone}"
+                           pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"/>
+                </div>
+                <div class="col-md-6"></div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <label class="inputLabel">Confirm password</label>
+                    <input id="confirmPassBox" type="text" class="textInput" th:field="${user.phone}"
+                           pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"/>
+                </div>
+                <div class="col-md-6"></div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-12">
+                    <button id="updateInfoBtn" type="submit" class="createCourseButton enable">Opdater oplysninger<i
+                            class="fas fa-arrow-right faArrow"></i></button>
+                </div>
+            </div>
+            <div class="row">
+                <div id="message">
+                    <h3>Password must contain the following:</h3>
+                    <p id="letter" class="invalid">A <b>lowercase</b> letter</p>
+                    <p id="capital" class="invalid">A <b>capital (uppercase)</b> letter</p>
+                    <p id="number" class="invalid">A <b>number</b></p>
+                    <p id="length" class="invalid">Minimum <b>8 characters</b></p>
+                    <p id="confirm" class="invalid">Password <b>must match</b></p>
+                </div>
+            </div>
+        </form>
+    </div>
+
+
+</div>
+<script type="text/javascript">
+    var oldPassword = "";
+    var newPasswordInput = document.getElementById("newPassBox");
+    var confirmPasswordInput = document.getElementById("confirmPassBox");
+    var letter = document.getElementById("letter");
+    var capital = document.getElementById("capital");
+    var number = document.getElementById("number");
+    var length = document.getElementById("length");
+    var confirm = document.getElementById("confirm");
+    var updateBtn = document.getElementById("updateInfoBtn");
+
+    var checksCompleted = 0;
+    //When clicked
+    newPasswordInput.onfocus = function () {
+        document.getElementById("message").style.display = "block";
+
+    };
+
+    //When clicked outside of password box
+    // newPasswordInput.onblur = function () {
+    //     document.getElementById("message").style.display = "none";
+    // };
+
+    newPasswordInput.onkeyup = function () {
+
+        //Validate lowercase
+
+        var lowerCaseLetters = /[a-z]/g;
+        if (newPasswordInput.value.match(lowerCaseLetters)) {
+            letter.classList.remove("invalid");
+            letter.classList.add("valid");
+            console.log(checksCompleted);
+        } else {
+            letter.classList.remove("valid");
+            letter.classList.add("invalid");
+        }
+
+
+        // Validate capital letters
+        var upperCaseLetters = /[A-Z]/g;
+        if (newPasswordInput.value.match(upperCaseLetters)) {
+            capital.classList.remove("invalid");
+            capital.classList.add("valid");
+        } else {
+            capital.classList.remove("valid");
+            capital.classList.add("invalid");
+        }
+        ;
+
+        // Validate numbers
+        var numbers = /[0-9]/g;
+        if (newPasswordInput.value.match(numbers)) {
+            number.classList.remove("invalid");
+            number.classList.add("valid");
+        } else {
+            number.classList.remove("valid");
+            number.classList.add("invalid");
+        }
+        ;
+
+        // Validate length
+        if (newPasswordInput.value.length >= 8) {
+            length.classList.remove("invalid");
+            length.classList.add("valid");
+        } else {
+            length.classList.remove("valid");
+            length.classList.add("invalid");
+        }
+        ;
+
+        if (confirmPasswordInput.value === newPasswordInput.value) {
+            confirm.classList.remove("invalid");
+            confirm.classList.add("valid");
+        } else {
+            confirm.classList.remove("valid");
+            confirm.classList.add("invalid");
+        }
+
+        ;
+
+
+        if (newPasswordInput.value.length >=1 && (newPasswordInput.value.match(lowerCaseLetters) &&
+            newPasswordInput.value.match(upperCaseLetters) &&
+            newPasswordInput.value.match(numbers) &&
+            newPasswordInput.value.length >= 8 && confirmPasswordInput.value === newPasswordInput.value)) {
+            $('.enable').prop('disabled', false);
+
+        } else if (newPasswordInput.value.length <1) {
+            $('.enable').prop('disabled', false);
+
+        } else {
+            console.log("Disabled");
+            $('.enable').prop('disabled', true);
+        }
+
+    };
+
+    confirmPasswordInput.onkeyup = function () {
+
+        var lowerCaseLetters = /[a-z]/g;
+        if (newPasswordInput.value.match(lowerCaseLetters)) {
+            letter.classList.remove("invalid");
+            letter.classList.add("valid");
+            console.log(checksCompleted);
+        } else {
+            letter.classList.remove("valid");
+            letter.classList.add("invalid");
+        }
+
+
+        // Validate capital letters
+        var upperCaseLetters = /[A-Z]/g;
+        if (newPasswordInput.value.match(upperCaseLetters)) {
+            capital.classList.remove("invalid");
+            capital.classList.add("valid");
+        } else {
+            capital.classList.remove("valid");
+            capital.classList.add("invalid");
+        }
+        ;
+
+        // Validate numbers
+        var numbers = /[0-9]/g;
+        if (newPasswordInput.value.match(numbers)) {
+            number.classList.remove("invalid");
+            number.classList.add("valid");
+        } else {
+            number.classList.remove("valid");
+            number.classList.add("invalid");
+        }
+        ;
+
+        // Validate length
+        if (newPasswordInput.value.length >= 8) {
+            length.classList.remove("invalid");
+            length.classList.add("valid");
+        } else {
+            length.classList.remove("valid");
+            length.classList.add("invalid");
+        }
+        ;
+
+        if (confirmPasswordInput.value.length < 1 && newPasswordInput.value.length <1  && (confirmPasswordInput.value === newPasswordInput.value)) {
+            confirm.classList.remove("invalid");
+            confirm.classList.add("valid");
+        } else {
+            confirm.classList.remove("valid");
+            confirm.classList.add("invalid");
+        }
+        ;
+
+        if (newPasswordInput.value.length >1 && (newPasswordInput.value.match(lowerCaseLetters) &&
+            newPasswordInput.value.match(upperCaseLetters) &&
+            newPasswordInput.value.match(numbers) &&
+            newPasswordInput.value.length >= 8 && confirmPasswordInput.value === newPasswordInput.value)) {
+            console.log("Enabled")
+            $('.enable').prop('disabled', false);
+
+        } else {
+            console.log("Disabled");
+            $('.enable').prop('disabled', true);
+        }
+
+    };
+
+
+</script>
+
+</body>
+</html>

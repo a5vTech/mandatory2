@@ -16,6 +16,7 @@ public class User {
     private String firstName;
     private String lastName;
     private String email;
+    private Integer phone;
     @JsonIgnore
     private String password;
     private Boolean enabled = true;
@@ -114,5 +115,13 @@ public class User {
 
     public void setImage(byte[] image) {
         this.image = image;
+    }
+
+    public Integer getPhone() {
+        return phone;
+    }
+
+    public void setPhone(Integer phone) {
+        this.phone = phone;
     }
 }

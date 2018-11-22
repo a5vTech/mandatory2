@@ -7,15 +7,15 @@
     <th:block th:include="fragments/head :: headInclude"/>
 
 </head>
-<body>
+<body class="backgroundCover" background="/Images/background.png">
 
 <!--Navbar-->
-<nav th:replace="fragments/navbar :: navbar"></nav>
+<!--<nav th:replace="fragments/navbar :: navbar"></nav>-->
 
 <div class="container">
     <div class="row">
         <div class="col-md-12 text-center">
-            <h1>KEA - Københavns erhversakedemi</h1>
+            <h1 class="loginHeader">KEA - Københavns erhversakedemi</h1>
         </div>
     </div>
     <form th:action="@{/login}" method="post" class="form-group">
@@ -24,16 +24,16 @@
 
             <div class="row">
                 <div class="col-md-12">
-                    <label>Email</label>
-                    <input type="text" name="username" class="form-control" placeholder="Email (ex. john@stud.kea.dk)"/>
+                    <label class="loginLabel">Email</label>
+                    <input type="text" name="username" class="loginInput" placeholder="Email (ex. john@stud.kea.dk)" value="jesp688a@stud.kea.dk"/>
                 </div>
 
             </div>
             <div class="row">
 
                 <div class="col-md-12">
-                    <label> Password</label>
-                    <input type="password" name="password" class="form-control marginBottom15px"/>
+                    <label class="loginLabel"> Password</label>
+                    <input type="password" name="password" class="marginBottom15px loginInput" placeholder="*********" value="1234" />
                 </div>
 
             </div>
@@ -42,22 +42,23 @@
 
                 <div class="row" th:if="${param.error}">
 
-                    <div class="col-md-12  text-center  marginBottom15px"><p class="loginError">Invalid username and
-                        password.</p></div>
+                    <div class="col-md-12  text-center  marginBottom15px"><p class="loginError">Invalid username or
+                        password</p></div>
 
 
                 </div>
 
                 <div class="row" th:if="${param.logout}">
                     <div class="col-md-12  text-center  marginBottom15px"><p class="logoutSuccess">You have been logged
-                        out.</p></div>
+                        out</p></div>
                 </div>
 
 
                 <div class="row">
                     <div class="col-md-4"></div>
                     <div class="col-md-4 text-center">
-                        <button type="submit" class="btn btn-success">Sign in</button>
+                        <button type="submit" class="loginButton">Sign in<i
+                                class="fas fa-arrow-right faArrow"></i></button>
                     </div>
                     <div class="col-md-4"></div>
                 </div>
