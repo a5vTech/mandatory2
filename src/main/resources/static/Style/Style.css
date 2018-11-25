@@ -176,19 +176,43 @@ p {
     color: #fff;
 }
 
+.padding0 {
+    padding: 0 !important;
+}
 
 /* The message box is shown when the user clicks on the password field */
 #message {
-    display:none;
-    color: #000;
-    position: relative;
-    padding: 20px;
+    display: none;
+    color: #fff;
+    position: absolute;
+    padding: 15px;
     margin-top: 10px;
+    border: solid 2px #223249;
+    background-color: #223249;
+    text-transform: uppercase;
+}
+
+#message h3 {
+    font-size: 18px;
 }
 
 #message p {
-    padding: 10px 35px;
-    font-size: 18px;
+    padding-left: 35px;
+    font-size: 14px;
+    margin-bottom: 2px;
+}
+
+#message::after{
+    content: "";
+    position: absolute;
+    margin-left: 1px;
+    bottom: 48px;
+    left: -8%;
+    box-sizing: border-box;
+    border: 1em solid black;
+    border-color: #223249 transparent transparent #223249;
+    transform-origin: 0 0;
+    transform: rotate(-45deg);
 }
 
 /* Add a green text color and a checkmark when the requirements are right */

@@ -44,6 +44,24 @@
                     <input type="text" class="textInput" th:field="${user.phone}"/>
                     <div class="col-md-6"></div>
                 </div>
+                <div class="col-md-6">
+                    <!--<div id="message">-->
+                        <!--<h3>Password requirements:</h3>-->
+                        <!--<p id="letter" class="invalid">A lowercase letter</p>-->
+                        <!--<p id="capital" class="invalid">An uppercase letter</p>-->
+                        <!--<p id="number" class="invalid">A number</p>-->
+                        <!--<p id="length" class="invalid">Minimum 8 characters</p>-->
+                        <!--<p id="confirm" class="invalid">Passwords must match</p>-->
+                    <!--</div>-->
+                    <div id="message">
+                        <h3>Password requirements</h3>
+                        <p id="letter" class="invalid inlineFlex"></p><p class="inlineFlex padding0">A lowercase letter</p><br>
+                        <p id="capital" class="invalid inlineFlex"></p><p class="inlineFlex padding0">An uppercase letter</p><br>
+                        <p id="number" class="invalid inlineFlex"></p><p class="inlineFlex padding0">A number</p><br>
+                        <p id="length" class="invalid inlineFlex"></p><p class="inlineFlex padding0">Minimum 8 characters</p><br>
+                        <p id="confirm" class="invalid inlineFlex"></p><p class="inlineFlex padding0">Passwords must match</p>
+                    </div>
+                </div>
             </div>
             <div class="row">
                 <div class="col-md-6">
@@ -64,20 +82,13 @@
 
             <div class="row">
                 <div class="col-md-12">
-                    <button id="updateInfoBtn" type="submit" class="createCourseButton enable">Opdater oplysninger<i
+                    <button id="updateInfoBtn" type="submit" class="createCourseButton enable">Update settings<i
                             class="fas fa-arrow-right faArrow"></i></button>
                 </div>
             </div>
-            <div class="row">
-                <div id="message">
-                    <h3>Password must contain the following:</h3>
-                    <p id="letter" class="invalid">A <b>lowercase</b> letter</p>
-                    <p id="capital" class="invalid">A <b>capital (uppercase)</b> letter</p>
-                    <p id="number" class="invalid">A <b>number</b></p>
-                    <p id="length" class="invalid">Minimum <b>8 characters</b></p>
-                    <p id="confirm" class="invalid">Password <b>must match</b></p>
-                </div>
-            </div>
+
+
+
         </form>
     </div>
 
@@ -101,8 +112,14 @@
 
     };
 
-    //When clicked outside of password box
+    confirmPasswordInput.onfocus = function () {
+        document.getElementById("message").style.display = "block";
+
+    };
+
+    // When clicked outside of password box
     // newPasswordInput.onblur = function () {
+    //
     //     document.getElementById("message").style.display = "none";
     // };
 
