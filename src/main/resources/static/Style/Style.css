@@ -1,27 +1,24 @@
-/* TODO: navbar forminsk vindue mister farve*/
-
-
 @font-face {
     font-family: "Helvetica Neue Condensed";
-    src:url('../Fonts/HelveticaNeue-Condensed-Bold.ttf');
+    src: url('../Fonts/HelveticaNeue-Condensed-Bold.ttf');
 }
 
-input:-webkit-autofill{
+input:-webkit-autofill {
     -webkit-box-shadow: 0 0 0px 1000px #fff inset;
 }
 
 a {
-    font-family: "Helvetica Neue Condensed",sans-serif;
+    font-family: "Helvetica Neue Condensed", sans-serif;
     text-transform: uppercase;
 }
 
 body {
-    font-family: "Helvetica Neue Condensed",sans-serif;
+    font-family: "Helvetica Neue Condensed", sans-serif;
     background-color: #ededed;
     color: #233249;
 }
 
-.loginError{
+.loginError {
     background-color: #ea5045;
     margin-top: 15px;
     padding-top: 10px;
@@ -29,7 +26,7 @@ body {
     text-transform: uppercase;
 }
 
-.logoutSuccess{
+.logoutSuccess {
     background-color: #5aaf6b;
     margin-top: 15px;
     padding-top: 10px;
@@ -37,16 +34,15 @@ body {
     text-transform: uppercase;
 }
 
-
-.marginBottom15px{
+.marginBottom15px {
     margin-bottom: 15px;
 }
 
-.loginWidth{
+.loginWidth {
     width: 50%;
 }
 
-.centerDiv{
+.centerDiv {
     margin: 0 auto;
 }
 
@@ -156,6 +152,33 @@ p {
     font-size: 24px;
     cursor: pointer;
     float: right;
+    transform: translateX(1px);
+
+
+}
+
+
+.myCoursesEditBtn{
+    background-color: #233249;
+    color: #fff;
+    border: none;
+    padding: 12px 17px;
+    text-transform: uppercase;
+    font-size: 24px;
+    cursor: pointer;
+    float: right;
+    transform: translateX(1px);
+}
+
+
+.createCourseButton:hover .faArrow{
+
+
+    -moz-transform: translate(5px, 0px);
+    -webkit-transform: translate(5px, 0px);
+    -o-transform: translate(5px, 0px);
+    -ms-transform: translate(5px, 0px);
+    transform: translate(5px, 0px);
 }
 
 .createCourseButton:hover {
@@ -180,6 +203,36 @@ p {
     padding: 0 !important;
 }
 
+#tester {
+    height: 450px !important;
+}
+
+#mandatory option {
+    height: 500px;
+}
+
+.multiSelectBox {
+    border-right-width: 5px;
+    border-top-width: 5px;
+    border-bottom-width: 5px;
+    border-color: white;
+    overflow-y: auto;
+}
+
+.multiSelectBox::-webkit-scrollbar {
+    width: 10px;
+    background-color: #F5F5F5;
+}
+
+.multiSelectBox::-webkit-scrollbar-thumb {
+    background-color: #223249;
+}
+
+select option {
+    padding-bottom: 5px;
+
+}
+
 /* The message box is shown when the user clicks on the password field */
 #message {
     display: none;
@@ -197,12 +250,12 @@ p {
 }
 
 #message p {
-    padding-left: 35px;
+    padding-left: 10px;
     font-size: 14px;
     margin-bottom: 2px;
 }
 
-#message::after{
+#message::after {
     content: "";
     position: absolute;
     margin-left: 1px;
@@ -222,7 +275,7 @@ p {
 
 .valid:before {
     position: relative;
-    left: -35px;
+    left: -10px;
     content: "✔";
 }
 
@@ -233,16 +286,13 @@ p {
 
 .invalid:before {
     position: relative;
-    left: -35px;
+    left: -10px;
     content: "✖";
 }
 
-
-
-
 /* Top bar */
 .topBar {
-    font-family: "Helvetica Neue Condensed",sans-serif;
+    font-family: "Helvetica Neue Condensed", sans-serif;
     text-transform: uppercase;
     display: flex;
     width: 100%;
@@ -350,5 +400,5 @@ p {
 }
 
 .userName {
-    padding: 20px 10px 20px 20px!important;
+    padding: 20px 10px 20px 20px !important;
 }

@@ -9,7 +9,7 @@
     <div class="topBar">COPENHAGEN SCHOOL OF DESIGN AND TECHNOLOGY</div>
     <nav class="navbar-dark navbar navbar-expand-lg navbarStyle">
         <div class="navbarLogoDiv">
-            <a href="#"><img class="navbar-brand navbarLogo"
+            <a th:href="'/'+${#strings.toLowerCase(#strings.substring(#authentication.getAuthorities(),6,#strings.length(#authentication.getAuthorities())-1))}"><img class="navbar-brand navbarLogo"
                              src="https://kea.dk/images/resources/logo-main-black-single.png"/></a>
         </div>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
@@ -19,25 +19,25 @@
         <div class="collapse navbar-collapse" id="navbarNavDropdown">
             <ul class="navbar-nav">
                 <li class="nav-item active" sec:authorize="hasRole('ROLE_STUDENT')">
-                    <a class="nav-link" href="#">My courses <span class="sr-only">(current)</span></a>
+                    <a class="nav-link" href="/student/myCourses">My courses <span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item" sec:authorize="hasRole('ROLE_STUDENT')">
-                    <a class="nav-link" href="#">Find courses</a>
+                    <a class="nav-link" href="/student/findCourses">Find courses</a>
                 </li>
                 <li class="nav-item" sec:authorize="hasRole('ROLE_STUDENT')">
-                    <a class="nav-link" href="#">Pending courses</a>
+                    <a class="nav-link" href="/student/pendingCourses">Pending courses</a>
                 </li>
                 <li class="nav-item" sec:authorize="hasRole('ROLE_TEACHER')">
-                    <a class="nav-link" href="#">Create course</a>
+                    <a class="nav-link" href="/teacher/createCourse">Create course</a>
                 </li>
                 <li class="nav-item" sec:authorize="hasRole('ROLE_TEACHER')">
-                    <a class="nav-link" href="#">Edit course</a>
+                    <a class="nav-link" href="/teacher/editCourse">Edit course</a>
                 </li>
                 <li class="nav-item" sec:authorize="hasRole('ROLE_ADMWORKER')">
-                    <a class="nav-link" href="#">Course information</a>
+                    <a class="nav-link" href="/admworker/courseInfo">Course information</a>
                 </li>
                 <li class="nav-item" sec:authorize="hasRole('ROLE_ADMWORKER')">
-                    <a class="nav-link" href="#">Course applications</a>
+                    <a class="nav-link" href="/admworker/courseApplications">Course applications</a>
                 </li>
 
                 <li class="nav-item dropdown navbarSettings">
@@ -49,7 +49,7 @@
                 </span>
                     <div class="dropdown-menu navDropdown dropdown-menu-right" id="navDropdownMenu"
                          aria-labelledby="navbarDropdownMenuLink">
-                        <a class="dropdown-item" href="#">Settings</a>
+                        <a class="dropdown-item" th:href="'/'+${#strings.toLowerCase(#strings.substring(#authentication.getAuthorities(),6,#strings.length(#authentication.getAuthorities())-1))}+'/settings'">Settings</a>
                         <a class="dropdown-item" href="/logout">Log out</a>
                     </div>
                 </li>

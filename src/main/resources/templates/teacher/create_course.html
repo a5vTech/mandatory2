@@ -43,8 +43,8 @@
                 <div class="col-md-6">
                     <label class="inputLabel">Mandatory or Elective</label>
                     <!--<input required type="text" class="textInput" th:field="${course.mandatory}"/>-->
-                    <select class="textInput" data-placeholder="Mandatory or elective" th:field="${course.mandatory}">
-                        <option value="true">Mandatory</option>
+                    <select id="mandatory" class="textInput" data-placeholder="Mandatory or elective" th:field="${course.mandatory}">
+                        <option  id="tester" value="true">Mandatory</option>
                         <option value="false">Elective</option>
                     </select>
                 </div>
@@ -176,7 +176,7 @@
             <div class="row">
                 <div class="col-md-6">
                     <label class="inputLabel">Teachers</label>
-                    <select multiple class="textInput multiSelect" name="teachersListString">
+                    <select multiple class="textInput multiSelect multiSelectBox" name="teachersListString">
                         <option th:value="${teacher.email}" th:each="teacher: ${teachers}" th:text="${teacher.firstName} + ' ' + ${teacher.lastName} + ' : ' + ${teacher.email}" th:if="${teacher.email} != ${#authentication.getName()}"></option>
                     </select>
                 </div>

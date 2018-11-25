@@ -55,9 +55,9 @@
                     <!--</div>-->
                     <div id="message">
                         <h3>Password requirements</h3>
+                        <p id="number" class="invalid inlineFlex"></p><p class="inlineFlex padding0">A number</p><br>
                         <p id="letter" class="invalid inlineFlex"></p><p class="inlineFlex padding0">A lowercase letter</p><br>
                         <p id="capital" class="invalid inlineFlex"></p><p class="inlineFlex padding0">An uppercase letter</p><br>
-                        <p id="number" class="invalid inlineFlex"></p><p class="inlineFlex padding0">A number</p><br>
                         <p id="length" class="invalid inlineFlex"></p><p class="inlineFlex padding0">Minimum 8 characters</p><br>
                         <p id="confirm" class="invalid inlineFlex"></p><p class="inlineFlex padding0">Passwords must match</p>
                     </div>
@@ -83,7 +83,7 @@
             <div class="row">
                 <div class="col-md-12">
                     <button id="updateInfoBtn" type="submit" class="createCourseButton enable">Update settings<i
-                            class="fas fa-arrow-right faArrow"></i></button>
+                            class="fas fa-arrow-right faArrow" id="demo"></i></button>
                 </div>
             </div>
 
@@ -95,6 +95,7 @@
 
 </div>
 <script type="text/javascript">
+
     var oldPassword = "";
     var newPasswordInput = document.getElementById("newPassBox");
     var confirmPasswordInput = document.getElementById("confirmPassBox");
@@ -170,14 +171,13 @@
         }
         ;
 
-        if (confirmPasswordInput.value === newPasswordInput.value) {
+        if (confirmPasswordInput.value.length > 0 && newPasswordInput.value.length > 0  && (confirmPasswordInput.value === newPasswordInput.value)) {
             confirm.classList.remove("invalid");
             confirm.classList.add("valid");
         } else {
             confirm.classList.remove("valid");
             confirm.classList.add("invalid");
         }
-
         ;
 
 
@@ -242,7 +242,7 @@
         }
         ;
 
-        if (confirmPasswordInput.value.length < 1 && newPasswordInput.value.length <1  && (confirmPasswordInput.value === newPasswordInput.value)) {
+        if (confirmPasswordInput.value.length > 0 && newPasswordInput.value.length > 0  && (confirmPasswordInput.value === newPasswordInput.value)) {
             confirm.classList.remove("invalid");
             confirm.classList.add("valid");
         } else {
@@ -251,15 +251,13 @@
         }
         ;
 
-        if (newPasswordInput.value.length >1 && (newPasswordInput.value.match(lowerCaseLetters) &&
+        if (newPasswordInput.value.length >= 8 && (newPasswordInput.value.match(lowerCaseLetters) &&
             newPasswordInput.value.match(upperCaseLetters) &&
             newPasswordInput.value.match(numbers) &&
-            newPasswordInput.value.length >= 8 && confirmPasswordInput.value === newPasswordInput.value)) {
-            console.log("Enabled")
+            confirmPasswordInput.value === newPasswordInput.value)) {
             $('.enable').prop('disabled', false);
 
         } else {
-            console.log("Disabled");
             $('.enable').prop('disabled', true);
         }
 

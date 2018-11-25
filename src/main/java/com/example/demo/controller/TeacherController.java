@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@SessionAttributes("username")
 @Controller
 public class TeacherController {
     @Autowired
@@ -36,15 +35,12 @@ public class TeacherController {
         return "teacher/create_course";
     }
 
+    @GetMapping("/teacher")
+    public String redirectTeacherMyCourses(){
 
-    @GetMapping("/teacher/myCourses")
-    public String teacherCourses(Model model) {
-        String username = SecurityContextHolder.getContext().getAuthentication().getName();
-        model.addAttribute("username", username);
-        List<Course> courses = userRepository.findByEmail(username).getCourses();
-        model.addAttribute("courses", courses);
-        return "teacher/my_courses";
+        return "redirect:/teacher/myCourses";
     }
+
 
     @PostMapping("/teacher/createCourse")
     public String createCourse(@ModelAttribute Course course, @RequestParam String teachersListString) {
@@ -73,6 +69,15 @@ public class TeacherController {
         return "redirect:/teacher/myCourses";
     }
 
+    @GetMapping("/teacher/myCourses")
+    public String teacherCourses(Model model) {
+        String username = SecurityContextHolder.getContext().getAuthentication().getName();
+        model.addAttribute("username", username);
+        List<Course> courses = userRepository.findByEmail(username).getCourses();
+        model.addAttribute("courses", courses);
+        return "teacher/my_courses";
+    }
+
 
     @GetMapping("/teacher/settings")
     public String settings(Model model) {
@@ -82,4 +87,18 @@ public class TeacherController {
 
         return "settings";
     }
+
+    @GetMapping("/teacher/course/{id}")
+    public String course(Model model, @PathVariable Long id) {
+        User currentUser = userRepository.findByEmail(SecurityContextHolder.getContext().getAuthentication().getName());
+        for (Course course : currentUser.getCourses()) {
+            if (course.getId() == id) {
+                model.addAttribute("course", course);
+            }
+        }
+
+        return "student/course";
+    }
+
+
 }
