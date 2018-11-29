@@ -14,7 +14,7 @@ public class Course {
     private String studyProgram;
     private Boolean mandatory;
     private Integer Ects;
-    private String courselanguage;
+    private String courseLanguage;
     private Integer minimumStudents;
     private Integer expectedStudents;
     private Integer maximumStudents;
@@ -23,6 +23,7 @@ public class Course {
     private String content;
     private String learningActivities;
     private String examForm;
+    private String createdBy;
 
 
     private String semester;
@@ -87,12 +88,12 @@ public class Course {
         Ects = ects;
     }
 
-    public String getCourselanguage() {
-        return courselanguage;
+    public String getCourseLanguage() {
+        return courseLanguage;
     }
 
-    public void setCourselanguage(String courselanguage) {
-        this.courselanguage = courselanguage;
+    public void setCourseLanguage(String courseLanguage) {
+        this.courseLanguage = courseLanguage;
     }
 
     public Integer getMinimumStudents() {
@@ -182,5 +183,13 @@ public class Course {
 
     public void setUsers(List<User> users) {
         this.user = users;
+    }
+
+    public String getCreatedBy() {
+        return createdBy;
+    }
+
+    public void setCreatedBy(String createdBy) {
+        this.createdBy = createdBy;
     }
 }

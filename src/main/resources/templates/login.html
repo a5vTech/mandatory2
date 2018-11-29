@@ -3,7 +3,7 @@
       xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
 <head>
     <meta charset="UTF-8"/>
-    <title>Spring Security Example </title>
+    <title>Login</title>
     <th:block th:include="fragments/head :: headInclude"/>
 
 </head>
@@ -25,7 +25,7 @@
             <div class="row">
                 <div class="col-md-12">
                     <label class="loginLabel">Email</label>
-                    <input id="email" type="text" name="username" class="loginInput" placeholder="Email (ex. john@stud.kea.dk)" value="jesp688a@stud.kea.dk"/>
+                    <input id="email" type="text" name="username" class="loginInput" placeholder="Email (ex. john@stud.kea.dk)" value="teacher"/>
                 </div>
 
             </div>
@@ -57,7 +57,7 @@
                 <div class="row">
                     <div class="col-md-4"></div>
                     <div class="col-md-4 text-center">
-                        <button type="submit" class="loginButton">Sign in<i
+                        <button type="submit" class="loginButton hoverAnimation">Sign in<i
                                 class="fas fa-arrow-right faArrow"></i></button>
                     </div>
                     <div class="col-md-4"></div>

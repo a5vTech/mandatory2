@@ -8,10 +8,10 @@
 <div th:fragment="navbar">
     <div class="topBar">COPENHAGEN SCHOOL OF DESIGN AND TECHNOLOGY</div>
     <nav class="navbar-dark navbar navbar-expand-lg navbarStyle">
-        <div class="navbarLogoDiv">
-            <a th:href="'/'+${#strings.toLowerCase(#strings.substring(#authentication.getAuthorities(),6,#strings.length(#authentication.getAuthorities())-1))}"><img class="navbar-brand navbarLogo"
-                             src="https://kea.dk/images/resources/logo-main-black-single.png"/></a>
-        </div>
+        <a class="navbarLogoDiv" th:href="'/'+${#strings.toLowerCase(#strings.substring(#authentication.getAuthorities(),6,#strings.length(#authentication.getAuthorities())-1))}">
+            <img class="navbar-brand navbarLogo"
+                             src="https://kea.dk/images/resources/logo-main-black-single.png"/>
+        </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
                 aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -34,10 +34,10 @@
                     <a class="nav-link" href="/teacher/editCourse">Edit course</a>
                 </li>
                 <li class="nav-item" sec:authorize="hasRole('ROLE_ADMWORKER')">
-                    <a class="nav-link" href="/admworker/courseInfo">Course information</a>
+                    <a class="nav-link" href="/admworker/requests">Requests</a>
                 </li>
                 <li class="nav-item" sec:authorize="hasRole('ROLE_ADMWORKER')">
-                    <a class="nav-link" href="/admworker/courseApplications">Course applications</a>
+                    <a class="nav-link" href="/admworker/studentList">Student list</a>
                 </li>
 
                 <li class="nav-item dropdown navbarSettings">

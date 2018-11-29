@@ -27,7 +27,8 @@ public class User {
 
 
     @ManyToMany(cascade = CascadeType.ALL)
-    @JoinTable(name = "course_users", joinColumns = {@JoinColumn(name = "user_id")},
+    @JoinTable(name = "course_users",
+            joinColumns = {@JoinColumn(name = "user_id")},
             inverseJoinColumns = {@JoinColumn(name = "course_id")})
     @JsonIgnore //Removes field from JSON
     private List<Course> courses = new ArrayList<>();

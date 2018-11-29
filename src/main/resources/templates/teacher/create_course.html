@@ -18,7 +18,7 @@
             <div class="row">
                 <div class="col-md-6">
                     <label class="inputLabel">Name of the course (Danish)</label>
-                    <input required class="textInput" type="text" th:field="${course.courseNameInDanish}" placeholder="Full Stack NodeJs"/>
+                    <input required class="textInput" type="text" th:field="${course.courseNameInDanish}"/>
                 </div>
                 <div class="col-md-6">
                     <label class="inputLabel">Name of the course (English)</label>
@@ -44,6 +44,7 @@
                     <label class="inputLabel">Mandatory or Elective</label>
                     <!--<input required type="text" class="textInput" th:field="${course.mandatory}"/>-->
                     <select id="mandatory" class="textInput" data-placeholder="Mandatory or elective" th:field="${course.mandatory}">
+                        <option value="" hidden>Choose</option>
                         <option  id="tester" value="true">Mandatory</option>
                         <option value="false">Elective</option>
                     </select>
@@ -56,8 +57,9 @@
                 </div>
                 <div class="col-md-6">
                     <label class="inputLabel">Course language</label>
-                    <!--<input required type="text" class="textInput" th:field="${course.courselanguage}"/>-->
-                    <select class="textInput" data-placeholder="Choose a Language... " th:field="${course.courselanguage}">
+                    <!--<input required type="text" class="textInput" th:field="${course.courseLanguage}"/>-->
+                    <select class="textInput" data-placeholder="Choose a Language... " th:field="${course.courseLanguage}">
+                        <option value="" hidden>Choose</option>
                         <option value="Afrikanns">Afrikanns</option>
                         <option value="Albanian">Albanian</option>
                         <option value="Arabic">Arabic</option>
@@ -183,7 +185,7 @@
             </div>
             <div class="row">
                 <div class="col-md-12">
-                    <button type="submit" class="createCourseButton">Create course<i class="fas fa-arrow-right faArrow"></i></button>
+                    <button type="submit" class="createCourseButton hoverAnimation">Create course<i class="fas fa-arrow-right faArrow"></i></button>
                 </div>
             </div>
         </form>

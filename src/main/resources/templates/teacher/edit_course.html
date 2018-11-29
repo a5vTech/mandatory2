@@ -1,12 +1,60 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
 <head>
     <meta charset="UTF-8"/>
-    <title>Title</title>
+    <title>Edit course</title>
     <th:block th:include="fragments/head :: headInclude"/>
+
 </head>
 <body>
+
+<!--Navbar-->
 <nav th:replace="fragments/navbar :: navbar"></nav>
+
+<input type="text" hidden="hidden" th:value="${username}" id="username"/>
+<!--My courses-->
+<div class="container">
+    <div class="text-center">
+        <h1 class="createCoursesHeader">Edit course</h1>
+    </div>
+    <div class="createCourseBox">
+        <form method="post" th:action="@{/teacher/edit_course}">
+            <div class="row text-center">
+                <div class="col">
+                    <label class="inputLabel">Name of the course (English)</label>
+                </div>
+                <div class="col">
+                    <label class="inputLabel">Semester</label>
+                </div>
+                <div class="col">
+                    <label class="inputLabel">Class code</label>
+                </div>
+
+                <div class="col">
+                    <label class="inputLabel">Mandatory/elective</label>
+                </div>
+            </div>
+
+
+            <!--Courses starts here-->
+
+            <a th:href="'/teacher/course/'+${course.id}"  th:each="course : ${courses}">
+                <div class="row text-center myCoursesRow">
+
+                    <p class="col textInput myCoursesText" th:text="${course.getCourseNameInEnglish()}">Full stack</p>
+                    <p class="col textInput myCoursesText" th:text="${course.getSemester()}">2</p>
+                    <p class="col textInput myCoursesText" th:text="${course.getClassCode()}">DAT17C</p>
+                    <span class="col">
+                        <p class="textInput myCoursesText" th:if="${course.mandatory}">Mandatory</p>
+                        <p class="textInput myCoursesText" th:unless="${course.mandatory}">Elective</p>
+                    </span>
+                </div>
+
+            </a>
+
+        </form>
+    </div>
+</div>
 
 
 </body>

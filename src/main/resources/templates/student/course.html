@@ -11,14 +11,15 @@
 <nav th:replace="fragments/navbar :: navbar"></nav>
 <div class="container">
     <div class="text-center">
-        <h1 class="createCoursesHeader">Course, <sub th:text="${course.getCourseNameInEnglish()}"></sub></h1>
+        <h1 class="createCoursesHeader">Course information</h1>
     </div>
     <div class="createCourseBox">
         <form method="post" th:action="@{/teacher/createCourse}">
             <div class="row">
                 <div class="col-md-6">
                     <label class="inputLabel">Name of the course (Danish)</label>
-                    <input required class="textInput" type="text" th:field="${course.courseNameInDanish}" placeholder="Full Stack NodeJs"/>
+                    <input required class="textInput" type="text" th:field="${course.courseNameInDanish}"
+                           placeholder="Full Stack NodeJs"/>
                 </div>
                 <div class="col-md-6">
                     <label class="inputLabel">Name of the course (English)</label>
@@ -43,8 +44,9 @@
                 <div class="col-md-6">
                     <label class="inputLabel">Mandatory or Elective</label>
                     <!--<input required type="text" class="textInput" th:field="${course.mandatory}"/>-->
-                    <select id="mandatory" class="textInput" data-placeholder="Mandatory or elective" th:field="${course.mandatory}">
-                        <option  id="tester" value="true">Mandatory</option>
+                    <select id="mandatory" class="textInput" data-placeholder="Mandatory or elective"
+                            th:field="${course.mandatory}">
+                        <option id="tester" value="true">Mandatory</option>
                         <option value="false">Elective</option>
                     </select>
                 </div>
@@ -56,8 +58,9 @@
                 </div>
                 <div class="col-md-6">
                     <label class="inputLabel">Course language</label>
-                    <!--<input required type="text" class="textInput" th:field="${course.courselanguage}"/>-->
-                    <select class="textInput" data-placeholder="Choose a Language... " th:field="${course.courselanguage}">
+                    <!--<input required type="text" class="textInput" th:field="${course.courseLanguage}"/>-->
+                    <select class="textInput" data-placeholder="Choose a Language... "
+                            th:field="${course.courseLanguage}">
                         <option value="Afrikanns">Afrikanns</option>
                         <option value="Albanian">Albanian</option>
                         <option value="Arabic">Arabic</option>
@@ -116,7 +119,7 @@
                         <option value="Slovenian">Slovenian</option>
                         <option value="Spanish">Spanish</option>
                         <option value="Swahili">Swahili</option>
-                        <option value="Swedish ">Swedish </option>
+                        <option value="Swedish ">Swedish</option>
                         <option value="Tamil">Tamil</option>
                         <option value="Tatar">Tatar</option>
                         <option value="Telugu">Telugu</option>
@@ -177,13 +180,17 @@
                 <div class="col-md-6">
                     <label class="inputLabel">Teachers</label>
                     <select multiple class="textInput multiSelect multiSelectBox" name="teachersListString">
-                        <option th:value="${teacher.email}" th:each="teacher: ${teachers}" th:text="${teacher.firstName} + ' ' + ${teacher.lastName} + ' : ' + ${teacher.email}" th:if="${teacher.email} != ${#authentication.getName()}"></option>
+                        <option th:each="teacher: ${teachers}"
+                                th:text="${teacher.firstName} + ' ' + ${teacher.lastName} + ' : ' + ${teacher.email}"
+                                th:if="${teacher.email} != ${#authentication.getName()}"></option>
+                        <option th:if="${teachers.size()} > 0">No teachers assigned</option>
                     </select>
                 </div>
             </div>
             <div class="row">
                 <div class="col-md-12">
-                    <button type="submit" class="createCourseButton">Create course<i class="fas fa-arrow-right faArrow"></i></button>
+                    <button type="submit" class="createCourseButton">{DUMMY BTN ATM}<i
+                            class="fas fa-arrow-right faArrow"></i></button>
                 </div>
             </div>
         </form>

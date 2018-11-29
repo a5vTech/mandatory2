@@ -11,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -58,7 +59,7 @@ public class TeacherController {
         currentuser.getCourses().add(course);
 
 
-        System.out.println(course.getCourselanguage());
+        System.out.println(course.getCourseLanguage());
         System.out.println(course.getMandatory());
         System.out.println(teachersListString);
         System.out.println(course.getUsers().size());
@@ -94,10 +95,30 @@ public class TeacherController {
         for (Course course : currentUser.getCourses()) {
             if (course.getId() == id) {
                 model.addAttribute("course", course);
+
+                List<User> teachers = new ArrayList<>();
+                for (User user : course.getUsers()){
+                    if (user.getRole().equals("ROLE_TEACHER")){
+                        teachers.add(user);
+                    }
+                }
+
+
+                model.addAttribute("teachers", teachers);
             }
         }
 
         return "student/course";
+    }
+
+    @GetMapping("/teacher/editCourse")
+    public String editCourse(Model model) {
+        String username = SecurityContextHolder.getContext().getAuthentication().getName();
+        model.addAttribute("username", username);
+        List<Course> courses = courseRepository.findAll(); //TODO: kun dem de selv har lavet, eller er tilknyttet
+        model.addAttribute("courses", courses);
+
+        return "teacher/edit_course";
     }
 
 

@@ -31,7 +31,7 @@
                 </div>
 
                 <div class="col">
-                    <label class="inputLabel">Mandatory</label>
+                    <label class="inputLabel">Mandatory/elective</label>
                 </div>
             </div>
 
@@ -39,13 +39,15 @@
             <!--Courses starts here-->
 
             <a th:href="'/teacher/course/'+${course.id}"  th:each="course : ${courses}">
-                <div class="row text-center">
+                <div class="row text-center myCoursesRow">
 
-                    <p class="col textInput" th:text="${course.getCourseNameInEnglish()}">Full stack</p>
-                    <p class="col textInput" th:text="${course.getSemester()}">2</p>
-                    <p class="col textInput" th:text="${course.getClassCode()}">DAT17C</p>
-                    <p class="col"><input type="checkbox" class="textInput" th:checked="${course.mandatory}" disabled/>
-                    </p>
+                    <p class="col textInput myCoursesText" th:text="${course.getCourseNameInEnglish()}">Full stack</p>
+                    <p class="col textInput myCoursesText" th:text="${course.getSemester()}">2</p>
+                    <p class="col textInput myCoursesText" th:text="${course.getClassCode()}">DAT17C</p>
+                    <span class="col">
+                        <p class="textInput myCoursesText" th:if="${course.mandatory}">Mandatory</p>
+                        <p class="textInput myCoursesText" th:unless="${course.mandatory}">Elective</p>
+                    </span>
                 </div>
 
             </a>
