@@ -8,12 +8,12 @@ import java.util.List;
 public class Course {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long Id;
+    private Long id;
     private String courseNameInDanish;
     private String courseNameInEnglish;
     private String studyProgram;
     private Boolean mandatory;
-    private Integer Ects;
+    private Integer ects;
     private String courseLanguage;
     private Integer minimumStudents;
     private Integer expectedStudents;
@@ -28,8 +28,15 @@ public class Course {
 
     private String semester;
     private String classCode;
-    @ManyToMany(mappedBy = "courses")
-    private List<User> user = new ArrayList<>();
+
+
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "course")
+    public List<UserCourse> course = new ArrayList<>();
+
+
+
+//    @ManyToMany(mappedBy = "courses")
+//    private List<User> user = new ArrayList<>();
 
     //Teachers
 
@@ -40,12 +47,13 @@ public class Course {
     }
 
 
+
     public Long getId() {
-        return Id;
+        return id;
     }
 
     public void setId(Long id) {
-        this.Id = id;
+        this.id = id;
     }
 
     public String getCourseNameInDanish() {
@@ -81,11 +89,11 @@ public class Course {
     }
 
     public Integer getEcts() {
-        return Ects;
+        return ects;
     }
 
     public void setEcts(Integer ects) {
-        Ects = ects;
+        this.ects = ects;
     }
 
     public String getCourseLanguage() {
@@ -177,13 +185,13 @@ public class Course {
         this.classCode = classCode;
     }
 
-    public List<User> getUsers() {
-        return user;
-    }
-
-    public void setUsers(List<User> users) {
-        this.user = users;
-    }
+//    public List<User> getUsers() {
+//        return user;
+//    }
+//
+//    public void setUsers(List<User> users) {
+//        this.user = users;
+//    }
 
     public String getCreatedBy() {
         return createdBy;

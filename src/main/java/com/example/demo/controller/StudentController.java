@@ -43,11 +43,11 @@ public class StudentController {
     @GetMapping("/student/course/{id}")
     public String course(Model model, @PathVariable Long id) {
         User currentUser = userRepository.findByEmail(SecurityContextHolder.getContext().getAuthentication().getName());
-        for (Course course : currentUser.getCourses()) {
-            if (course.getId() == id) {
-                model.addAttribute("course", course);
-            }
-        }
+//        for (Course course : currentUser.getCourses()) {
+//            if (course.getId() == id) {
+//                model.addAttribute("course", course);
+//            }
+//        }
 
         return "student/course";
     }
@@ -60,8 +60,8 @@ public class StudentController {
         model.addAttribute("username", currentUserEmail);
 
         //Load students courses
-        List<Course> courses = userRepository.findByEmail(currentUserEmail).getCourses();
-        model.addAttribute("courses", courses);
+//        List<Course> courses = userRepository.findByEmail(currentUserEmail).getCourses();
+//        model.addAttribute("courses", courses);
         return "student/my_courses";
     }
 

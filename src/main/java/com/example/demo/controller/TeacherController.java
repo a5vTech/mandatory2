@@ -49,22 +49,22 @@ public class TeacherController {
 
 
         String[] teacherMails = teachersListString.split(",");
-
-        for (String email : teacherMails) {
-            User user = userRepository.findByEmail(email);
-            course.getUsers().add(user);
-            user.getCourses().add(course);
-        }
-        course.getUsers().add(currentuser);
-        currentuser.getCourses().add(course);
-
-
-        System.out.println(course.getCourseLanguage());
-        System.out.println(course.getMandatory());
-        System.out.println(teachersListString);
-        System.out.println(course.getUsers().size());
-
-        courseRepository.save(course);
+//
+//        for (String email : teacherMails) {
+//            User user = userRepository.findByEmail(email);
+//            course.getUsers().add(user);
+//            user.getCourses().add(course);
+//        }
+//        course.getUsers().add(currentuser);
+//        currentuser.getCourses().add(course);
+//
+//
+//        System.out.println(course.getCourseLanguage());
+//        System.out.println(course.getMandatory());
+//        System.out.println(teachersListString);
+//        System.out.println(course.getUsers().size());
+//
+//        courseRepository.save(course);
 
 
         return "redirect:/teacher/myCourses";
@@ -74,8 +74,8 @@ public class TeacherController {
     public String teacherCourses(Model model) {
         String username = SecurityContextHolder.getContext().getAuthentication().getName();
         model.addAttribute("username", username);
-        List<Course> courses = userRepository.findByEmail(username).getCourses();
-        model.addAttribute("courses", courses);
+//        List<Course> courses = userRepository.findByEmail(username).getCourses();
+//        model.addAttribute("courses", courses);
         return "teacher/my_courses";
     }
 
@@ -92,21 +92,21 @@ public class TeacherController {
     @GetMapping("/teacher/course/{id}")
     public String course(Model model, @PathVariable Long id) {
         User currentUser = userRepository.findByEmail(SecurityContextHolder.getContext().getAuthentication().getName());
-        for (Course course : currentUser.getCourses()) {
-            if (course.getId() == id) {
-                model.addAttribute("course", course);
-
-                List<User> teachers = new ArrayList<>();
-                for (User user : course.getUsers()){
-                    if (user.getRole().equals("ROLE_TEACHER")){
-                        teachers.add(user);
-                    }
-                }
-
-
-                model.addAttribute("teachers", teachers);
-            }
-        }
+//        for (Course course : currentUser.getCourses()) {
+//            if (course.getId() == id) {
+//                model.addAttribute("course", course);
+//
+//                List<User> teachers = new ArrayList<>();
+//                for (User user : course.getUsers()){
+//                    if (user.getRole().equals("ROLE_TEACHER")){
+//                        teachers.add(user);
+//                    }
+//                }
+//
+//
+//                model.addAttribute("teachers", teachers);
+//            }
+//        }
 
         return "student/course";
     }
