@@ -190,16 +190,28 @@
                                 th:if="${teacher.role == 'ROLE_TEACHER'}"></option>
                         <option disabled>Students</option>
                         <option th:value="${teacher.email}" th:each="teacher: ${teachers}"
-                                 th:text="${teacher.firstName} + ' ' + ${teacher.lastName} + ' : ' + ${teacher.email}"
-                                 th:if="${teacher.email != #authentication.getName() && teacher.role == 'ROLE_STUDENT'}"></option>
+                                th:text="${teacher.firstName} + ' ' + ${teacher.lastName} + ' : ' + ${teacher.email}"
+                                th:if="${teacher.email != #authentication.getName() && teacher.role == 'ROLE_STUDENT'}"></option>
                     </select>
+                </div>
+
+            </div>
+            <div class="row">
+                <div class="col-md-12 text-center" th:if="${param.error}">
+                    <p>ALREADY ASSIGNED</p>
                 </div>
             </div>
             <div class="row">
-                <div class="col-md-12 marginTop50px">
-                    <button type="submit" name="update" value="Update" class="createCourseButton hoverAnimation" sec:authorize="hasRole('ROLE_TEACHER')">Update course<i
+                <div class="col-md-12">
+                    <button type="submit" name="update" value="Update" class="createCourseButton hoverAnimation"
+                            sec:authorize="hasRole('ROLE_TEACHER')">Update course<i
+                            class="fas fa-arrow-right faArrow"></i>
+                    </button><button type="submit" name="signUp" value="signUp" class="createCourseButton hoverAnimation"
+                            sec:authorize="hasRole('ROLE_STUDENT')">Sign up<i
                             class="fas fa-arrow-right faArrow"></i></button>
-                    <button type="submit" name="delete" value="Delete" class="deleteCourseButton" sec:authorize="hasRole('ROLE_TEACHER')">Delete course</button>
+                    <button type="submit" name="delete" value="Delete" class="deleteCourseButton"
+                            sec:authorize="hasRole('ROLE_TEACHER')">Delete course
+                    </button>
                 </div>
             </div>
         </form>

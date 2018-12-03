@@ -14,6 +14,8 @@ public class UserCourse {
 
     @DateTimeFormat(pattern = "dd-MM-yyyy")
     private LocalDateTime signUpDate;
+
+    private Boolean accepted = false;
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
     private User user;
 
@@ -67,5 +69,13 @@ public class UserCourse {
 
     public void setCourse(Course course) {
         this.course = course;
+    }
+
+    public Boolean getAccepted() {
+        return accepted;
+    }
+
+    public void setAccepted(Boolean accepted) {
+        this.accepted = accepted;
     }
 }

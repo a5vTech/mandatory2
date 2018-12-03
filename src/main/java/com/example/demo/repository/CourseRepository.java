@@ -16,4 +16,6 @@ public interface CourseRepository extends CrudRepository<Course, Long> {
     @Query(nativeQuery = true, value = "SELECT * FROM course WHERE id = ?1")
     Course findCourse(Long id);
 
+
+
 }

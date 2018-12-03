@@ -2,18 +2,67 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org/">
 <head>
     <meta charset="UTF-8"/>
-    <title>Pending courses</title>
+    <title>My courses</title>
     <th:block th:include="fragments/head :: headInclude"/>
 
 </head>
 <body>
+
+<!--Navbar-->
 <nav th:replace="fragments/navbar :: navbar"></nav>
 
-<h1>Pending courses</h1>
-<div class="container col-md-4">
-    <div class="row">
-        <h1 class="text-center col-md-12">Awaiting acceptance</h1>
+<!--My courses-->
+<div class="container">
+    <div class="text-center">
+        <h1 class="createCoursesHeader">Pending courses</h1>
     </div>
+    <div class="createCourseBox">
+        <form method="post" th:action="@{/teacher/myCourses}">
+            <div class="row text-center">
+                <div class="col">
+                    <label class="inputLabel">Name of the course (English)</label>
+                </div>
+                <div class="col">
+                    <label class="inputLabel">Semester</label>
+                </div>
+                <div class="col">
+                    <label class="inputLabel">Class code</label>
+                </div>
+
+                <div class="col">
+                    <label class="inputLabel">Mandatory/elective</label>
+                </div>
+                <div class="col">
+                    <label class="inputLabel">Signup date</label>
+                </div>
+
+            </div>
+
+
+            <!--Courses starts here-->
+
+            <a th:href="'/student/course/'+${course.getId()}"  th:each="course : ${courses}">
+                <div class="row text-center myCoursesRow">
+
+                    <p class="col textInput myCoursesText" th:text="${course.getCourseNameInEnglish()}">Full stack</p>
+                    <p class="col textInput myCoursesText" th:text="${course.getSemester()}">2</p>
+                    <p class="col textInput myCoursesText" th:text="${course.getClassCode()}">DAT17C</p>
+                    <span class="col">
+                        <p class="textInput myCoursesText" th:if="${course.mandatory}">Mandatory</p>
+                        <p class="textInput myCoursesText" th:unless="${course.mandatory}">Elective</p>
+                    </span>
+                    <p class="col textInput myCoursesText"></p>
+                </div>
+
+            </a>
+
+        </form>
+    </div>
+
+
+
 </div>
+
+
 </body>
 </html>
