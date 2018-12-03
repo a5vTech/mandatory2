@@ -2,19 +2,21 @@ package com.example.demo.model;
 
 import javax.persistence.*;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 public class Course {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long Id;
+    private Long id;
     private String courseNameInDanish;
     private String courseNameInEnglish;
     private String studyProgram;
     private Boolean mandatory;
-    private Integer Ects;
-    private String courselanguage;
+    private Integer ects;
+    private String courseLanguage;
     private Integer minimumStudents;
     private Integer expectedStudents;
     private Integer maximumStudents;
@@ -23,12 +25,20 @@ public class Course {
     private String content;
     private String learningActivities;
     private String examForm;
+    private String createdBy;
 
 
     private String semester;
     private String classCode;
-    @ManyToMany(mappedBy = "courses")
-    private List<User> user = new ArrayList<>();
+
+
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "course")
+    public Set<UserCourse> userCourses = new HashSet<>();
+
+
+
+//    @ManyToMany(mappedBy = "courses")
+//    private List<User> user = new ArrayList<>();
 
     //Teachers
 
@@ -39,12 +49,13 @@ public class Course {
     }
 
 
+
     public Long getId() {
-        return Id;
+        return id;
     }
 
     public void setId(Long id) {
-        this.Id = id;
+        this.id = id;
     }
 
     public String getCourseNameInDanish() {
@@ -80,19 +91,19 @@ public class Course {
     }
 
     public Integer getEcts() {
-        return Ects;
+        return ects;
     }
 
     public void setEcts(Integer ects) {
-        Ects = ects;
+        this.ects = ects;
     }
 
-    public String getCourselanguage() {
-        return courselanguage;
+    public String getCourseLanguage() {
+        return courseLanguage;
     }
 
-    public void setCourselanguage(String courselanguage) {
-        this.courselanguage = courselanguage;
+    public void setCourseLanguage(String courseLanguage) {
+        this.courseLanguage = courseLanguage;
     }
 
     public Integer getMinimumStudents() {
@@ -176,11 +187,28 @@ public class Course {
         this.classCode = classCode;
     }
 
-    public List<User> getUsers() {
-        return user;
+//    public List<User> getUsers() {
+//        return user;
+//    }
+//
+//    public void setUsers(List<User> users) {
+//        this.user = users;
+//    }
+
+
+    public Set<UserCourse> getUserCourses() {
+        return userCourses;
     }
 
-    public void setUsers(List<User> users) {
-        this.user = users;
+    public void setUserCourses(Set<UserCourse> userCourses) {
+        this.userCourses = userCourses;
+    }
+
+    public String getCreatedBy() {
+        return createdBy;
+    }
+
+    public void setCreatedBy(String createdBy) {
+        this.createdBy = createdBy;
     }
 }

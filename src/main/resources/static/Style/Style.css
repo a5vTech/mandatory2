@@ -1,27 +1,29 @@
-/* TODO: navbar forminsk vindue mister farve*/
-
-
 @font-face {
     font-family: "Helvetica Neue Condensed";
-    src:url('../Fonts/HelveticaNeue-Condensed-Bold.ttf');
+    src: url('../Fonts/HelveticaNeue-Condensed-Bold.ttf');
 }
 
-input:-webkit-autofill{
+@font-face {
+    font-family: "Helvetica Neue Less Condensed";
+    src: url('../Fonts/HelveticaNeue-CondObl.ttf');
+}
+
+input:-webkit-autofill {
     -webkit-box-shadow: 0 0 0px 1000px #fff inset;
 }
 
 a {
-    font-family: "Helvetica Neue Condensed",sans-serif;
+    font-family: "Helvetica Neue Condensed", sans-serif;
     text-transform: uppercase;
 }
 
 body {
-    font-family: "Helvetica Neue Condensed",sans-serif;
+    font-family: "Helvetica Neue Condensed", sans-serif;
     background-color: #ededed;
     color: #233249;
 }
 
-.loginError{
+.loginError {
     background-color: #ea5045;
     margin-top: 15px;
     padding-top: 10px;
@@ -29,7 +31,7 @@ body {
     text-transform: uppercase;
 }
 
-.logoutSuccess{
+.logoutSuccess {
     background-color: #5aaf6b;
     margin-top: 15px;
     padding-top: 10px;
@@ -37,16 +39,15 @@ body {
     text-transform: uppercase;
 }
 
-
-.marginBottom15px{
+.marginBottom15px {
     margin-bottom: 15px;
 }
 
-.loginWidth{
+.loginWidth {
     width: 50%;
 }
 
-.centerDiv{
+.centerDiv {
     margin: 0 auto;
 }
 
@@ -147,6 +148,18 @@ p {
     text-transform: uppercase;
 }
 
+.myCoursesEditBtn{
+    background-color: #233249;
+    color: #fff;
+    border: none;
+    padding: 12px 17px;
+    text-transform: uppercase;
+    font-size: 24px;
+    cursor: pointer;
+    float: right;
+    /* transform: translateX(1px); */
+
+}
 .createCourseButton {
     background-color: #233249;
     color: #fff;
@@ -158,11 +171,25 @@ p {
     float: right;
 }
 
+.hoverAnimation:hover .faArrow{
+    transform: translateX(5px);
+    -webkit-transform: translateX(5px);
+    -moz-transform: translateX(5px);
+    -ms-transform: translateX(5px);
+    -o-transform: translateX(5px);
+    transition: .5s;
+}
+
+a:hover{
+    text-decoration: none;
+}
+
 .createCourseButton:hover {
     background-color: #313e5b;
 }
 
 .faArrow {
+    transition: .5s;
     padding-left: 10px;
 }
 
@@ -176,19 +203,103 @@ p {
     color: #fff;
 }
 
+.padding0 {
+    padding: 0 !important;
+}
 
-/* The message box is shown when the user clicks on the password field */
+#tester {
+    height: 450px !important;
+}
+
+#mandatory option {
+    height: 500px;
+}
+
+.multiSelectBox {
+    border-right-width: 5px;
+    border-top-width: 5px;
+    border-bottom-width: 5px;
+    border-color: white;
+    overflow-y: auto;
+}
+
+.multiSelectBox::-webkit-scrollbar {
+    width: 10px;
+    background-color: #F5F5F5;
+}
+
+.multiSelectBox::-webkit-scrollbar-thumb {
+    background-color: #223249;
+}
+
+select option {
+    padding-bottom: 4px;
+    padding-top: 4px;
+}
+
+.myCoursesRow:hover .myCoursesText {
+    color: #fff;
+    transition: .3s;
+}
+
+.myCoursesText {
+    font-family: "Helvetica Neue Less Condensed", sans-serif;
+    transition: .3s;
+}
+
+.deleteCourseButton {
+    margin-right: 25px;
+    background-color: #de533d;
+    color: #fff;
+    border: none;
+    padding: 12px 17px;
+    text-transform: uppercase;
+    font-size: 24px;
+    cursor: pointer;
+    float: left;
+}
+
+.deleteCourseButton:hover {
+    background-color: #ff634a;
+}
+
+.marginTop50px {
+    margin-top: 50px;
+}
+
+    /* The message box is shown when the user clicks on the password field */
 #message {
-    display:none;
-    color: #000;
-    position: relative;
-    padding: 20px;
+    display: none;
+    color: #fff;
+    position: absolute;
+    padding: 15px 25px;
     margin-top: 10px;
+    border: solid 2px #223249;
+    background-color: #223249;
+    text-transform: uppercase;
+}
+
+#message h3 {
+    font-size: 18px;
 }
 
 #message p {
-    padding: 10px 35px;
-    font-size: 18px;
+    padding-left: 10px;
+    font-size: 14px;
+    margin-bottom: 2px;
+}
+
+#message::after {
+    content: "";
+    position: absolute;
+    margin-left: 1px;
+    bottom: 48px;
+    left: -8%;
+    box-sizing: border-box;
+    border: 1em solid black;
+    border-color: #223249 transparent transparent #223249;
+    transform-origin: 0 0;
+    transform: rotate(-45deg);
 }
 
 /* Add a green text color and a checkmark when the requirements are right */
@@ -198,7 +309,7 @@ p {
 
 .valid:before {
     position: relative;
-    left: -35px;
+    left: -10px;
     content: "✔";
 }
 
@@ -209,16 +320,13 @@ p {
 
 .invalid:before {
     position: relative;
-    left: -35px;
+    left: -10px;
     content: "✖";
 }
 
-
-
-
 /* Top bar */
 .topBar {
-    font-family: "Helvetica Neue Condensed",sans-serif;
+    font-family: "Helvetica Neue Condensed", sans-serif;
     text-transform: uppercase;
     display: flex;
     width: 100%;
@@ -326,5 +434,5 @@ p {
 }
 
 .userName {
-    padding: 20px 10px 20px 20px!important;
+    padding: 20px 10px 20px 20px !important;
 }

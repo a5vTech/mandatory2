@@ -23,6 +23,13 @@ public class StudentController {
     @Autowired
     CourseRepository courseRepository;
 
+//Used to redirect from kea logo
+    @GetMapping("/student")
+    public String redirectTeacherMyCourses() {
+
+        return "redirect:/student/myCourses";
+    }
+
     @GetMapping("/student/course")
     public String student(Model model) {
         //Get current user
@@ -36,11 +43,11 @@ public class StudentController {
     @GetMapping("/student/course/{id}")
     public String course(Model model, @PathVariable Long id) {
         User currentUser = userRepository.findByEmail(SecurityContextHolder.getContext().getAuthentication().getName());
-          for(Course course : currentUser.getCourses()){
-          if(course.getId() == id){
-          model.addAttribute("course",course);
-        }
-    }
+//        for (Course course : currentUser.getCourses()) {
+//            if (course.getId() == id) {
+//                model.addAttribute("course", course);
+//            }
+//        }
 
         return "student/course";
     }
@@ -53,8 +60,8 @@ public class StudentController {
         model.addAttribute("username", currentUserEmail);
 
         //Load students courses
-        List<Course> courses = userRepository.findByEmail(currentUserEmail).getCourses();
-        model.addAttribute("courses", courses);
+//        List<Course> courses = userRepository.findByEmail(currentUserEmail).getCourses();
+//        model.addAttribute("courses", courses);
         return "student/my_courses";
     }
 
@@ -69,6 +76,15 @@ public class StudentController {
     public String pendingCourses(Model model) {
 
         return "student/pending_courses";
+    }
+
+    @GetMapping("/student/settings")
+    public String settings(Model model) {
+        User currentuser = userRepository.findByEmail(SecurityContextHolder.getContext().getAuthentication().getName());
+        model.addAttribute("user", currentuser);
+        model.addAttribute("course", new Course());
+
+        return "settings";
     }
 
 }

@@ -1,18 +1,18 @@
 package com.example.demo.model;
 
-
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "user_id")
-    private Long Id;
+    private Long id;
     private String firstName;
     private String lastName;
     private String email;
@@ -25,23 +25,26 @@ public class User {
 //    @Column(name="image", nullable=false, columnDefinition="mediumblob")
 //    private byte[] image;
 
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "user")
+    public Set<UserCourse> userCourses = new HashSet<>();
 
-    @ManyToMany(cascade = CascadeType.ALL)
-    @JoinTable(name = "course_users", joinColumns = {@JoinColumn(name = "user_id")},
-            inverseJoinColumns = {@JoinColumn(name = "course_id")})
-    @JsonIgnore //Removes field from JSON
-    private List<Course> courses = new ArrayList<>();
+//    @ManyToMany(cascade = CascadeType.ALL)
+//    @JoinTable(name = "course_users",
+//            joinColumns = {@JoinColumn(name = "user_id")},
+//            inverseJoinColumns = {@JoinColumn(name = "course_id")})
+//    @JsonIgnore //Removes field from JSON
+//    private List<Course> courses = new ArrayList<>();
 
     public User() {
     }
 
 
     public Long getId() {
-        return Id;
+        return id;
     }
 
     public void setId(Long id) {
-        this.Id = id;
+        this.id = id;
     }
 
     public String getFirstName() {
@@ -75,14 +78,14 @@ public class User {
     public void setPassword(String password) {
         this.password = password;
     }
-
-    public List<Course> getCourses() {
-        return courses;
-    }
-
-    public void setCourses(List<Course> courses) {
-        this.courses = courses;
-    }
+//
+//    public List<Course> getCourses() {
+//        return courses;
+//    }
+//
+//    public void setCourses(List<Course> courses) {
+//        this.courses = courses;
+//    }
 
     public Boolean getEnabled() {
         return enabled;
@@ -109,6 +112,13 @@ public class User {
 //    }
 
 
+    public Set<UserCourse> getUserCourses() {
+        return userCourses;
+    }
+
+    public void setUserCourses(Set<UserCourse> userCourses) {
+        this.userCourses = userCourses;
+    }
 
     public Integer getPhone() {
         return phone;

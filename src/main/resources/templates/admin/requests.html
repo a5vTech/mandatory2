@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Requests</title>
+    <th:block th:include="fragments/head :: headInclude"/>
+
+</head>
+<body>
+<nav th:replace="fragments/navbar :: navbar"></nav>
+
+<input type="text" hidden="hidden" th:value="${username}" id="username"/>
+<!--My courses-->
+
+<div class="container">
+    <div class="row">
+        <h1 class="text-center col-md-12 myCoursesHeader">Requests</h1>
+    </div>
+</div>
+</body>
+</html>
