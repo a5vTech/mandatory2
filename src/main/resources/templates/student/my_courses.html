@@ -7,78 +7,90 @@
 
 </head>
 <body>
+
+<!--Navbar-->
 <nav th:replace="fragments/navbar :: navbar"></nav>
 
 <input type="text" hidden="hidden" th:value="${username}" id="username"/>
 <!--My courses-->
-
 <div class="container">
-    <div class="row">
-        <h1 class="text-center col-md-12 myCoursesHeader">My courses</h1>
+    <div class="text-center">
+        <h1 class="createCoursesHeader">My courses</h1>
     </div>
+    <div class="createCourseBox">
+        <form method="post" th:action="@{/teacher/myCourses}">
+            <div class="row text-center">
+                <div class="col">
+                    <label class="inputLabel">Name of the course (English)</label>
+                </div>
+                <div class="col">
+                    <label class="inputLabel">Semester</label>
+                </div>
+                <div class="col">
+                    <label class="inputLabel">Class code</label>
+                </div>
 
-    <div class="row">
-        <div class="col-md-3 text-center">Course</div>
-        <div class="col-md-3 text-center">Semester</div>
-        <div class="col-md-3 text-center">Class code</div>
-        <div class="col-md-3 text-center">Mandatory</div>
-        <div class="col-md-3 text-center"></div>
-    </div>
-    <div id="myCourses">
-
-        <div class="row" th:each="course : ${courses}">
-            <div class="col-md-3 text-center" th:text="${course.courseNameInEnglish}">Full Stack NodeJs</div>
-            <div class="col-md-3 text-center" th:text="${course.classCode}">DAT17C-NODEJS</div>
-            <div class="col-md-3 text-center"><input type="checkbox" th:checked="${course.mandatory}" disabled/></div>
-            <div class="col-md-3 text-center">
-                <a th:href="'/student/course/'+${course.id}">
-                    <button type="button" class="btn">Open course</button>
-                </a>
+                <div class="col">
+                    <label class="inputLabel">Mandatory/elective</label>
+                </div>
             </div>
-        </div>
+
+
+            <!--Courses starts here-->
+
+            <a th:href="'/teacher/course/'+${course.id}"  th:each="course : ${courses}">
+                <div class="row text-center myCoursesRow">
+
+                    <p class="col textInput myCoursesText" th:text="${course.getCourseNameInEnglish()}">Full stack</p>
+                    <p class="col textInput myCoursesText" th:text="${course.getSemester()}">2</p>
+                    <p class="col textInput myCoursesText" th:text="${course.getClassCode()}">DAT17C</p>
+                    <span class="col">
+                        <p class="textInput myCoursesText" th:if="${course.mandatory}">Mandatory</p>
+                        <p class="textInput myCoursesText" th:unless="${course.mandatory}">Elective</p>
+                    </span>
+                </div>
+
+            </a>
+
+        </form>
     </div>
+
+
+    <!--<div class="row">-->
+    <!--<h1 class="text-center col-md-12">My courses</h1>-->
+    <!--</div>-->
+
+
+    <!--<div class="row">-->
+    <!--<div class="col text-center">Course</div>-->
+    <!--<div class="col text-center">Class code</div>-->
+    <!--<div class="col text-center">Semester</div>-->
+
+    <!--<div class="col text-center">Mandatory</div>-->
+    <!--<div class="col text-center"></div>-->
+    <!--</div>-->
+    <!--<div id="myCourses">-->
+    <!--<div class="row" th:each="course : ${courses}">-->
+    <!--<div class="col" th:text="${course.courseNameInEnglish}">Full Stack NodeJs</div>-->
+    <!--<div class="col" th:text="${course.classCode}"></div>-->
+    <!--<div class="col text-center" th:text="${course.semester}"></div>-->
+    <!--<div class="col text-center"><input type="checkbox" th:checked="${course.mandatory}" disabled/></div>-->
+    <!--<div class="col">-->
+    <!--<a th:href="'/teacher/course/'+${course.id}">-->
+    <!--<button type="button" class="btn">Open course</button>-->
+    <!--</a>-->
+    <!--</div>-->
+    <!--<div class="col">-->
+    <!--<a th:href="'/teacher/editCourse/'+${course.id}">-->
+    <!--<button type="button" class="myCoursesEditBtn">Edit course</button>-->
+    <!--</a>-->
+    <!--</div>-->
+    <!--</div>-->
+    <!--</div>-->
     <!--end myCourses div-->
 
 
 </div>
-<script type="text/javascript" th:inline="javascript">
-    $(document).ready(function () {
-        getAllCourses();
-        setInterval(getAllCourses, 60000);
-    });
-
-    function getAllCourses() {
-        var myCourses = $('#myCourses');
-        var email = [[${username}]];
-
-        $.ajax({
-            type: 'GET',
-            url: '/api/student/courses?email=' + email,
-            success: function (courses) {
-                myCourses.empty();
-                $.each(courses, function (i, course) {
-                    var mandatory = '';
-
-                    if (course.mandatory == true) {
-                        mandatory = 'checked';
-                    }
-
-                    myCourses.append('<div class="row">' +
-                        '<div class="col-md-3">' + course.courseNameInEnglish + '</div>' +
-                        '<div class="col-md-3">' + course.classCode + '</div>' +
-                        '<div class="col-md-3 text-center"><input type="checkbox"' + mandatory + ' disabled/></div>' +
-                        '<div class="col-md-3">' +
-                        '<button type="button" class="btn">Open course</button>' +
-                        '</div>' +
-                        '</div>');
-
-                });
-            }
-
-
-        });
-    }
-</script>
 
 
 </body>

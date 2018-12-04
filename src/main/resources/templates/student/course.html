@@ -14,7 +14,7 @@
         <h1 class="createCoursesHeader">Course information</h1>
     </div>
     <div class="createCourseBox">
-        <form method="post" th:action="@{/teacher/createCourse}">
+        <form method="post" th:action="@{/teacher/course}">
             <div class="row">
                 <div class="col-md-6">
                     <label class="inputLabel">Name of the course (Danish)</label>
@@ -174,23 +174,44 @@
                 <div class="col-md-6">
                     <label class="inputLabel">Exam form</label>
                     <input required type="text" class="textInput" th:field="${course.examForm}"/>
+                    <input th:field="${course.id}" hidden/>
+
                 </div>
             </div>
             <div class="row">
                 <div class="col-md-6">
                     <label class="inputLabel">Teachers</label>
                     <select multiple class="textInput multiSelect multiSelectBox" name="teachersListString">
-                        <option th:each="teacher: ${teachers}"
+                        <option disabled>Teachers</option>
+                        <option th:if="${teachers.size()} == 0">No teachers assigned</option>
+
+                        <option th:value="${teacher.email}" th:each="teacher: ${teachers}"
                                 th:text="${teacher.firstName} + ' ' + ${teacher.lastName} + ' : ' + ${teacher.email}"
-                                th:if="${teacher.email} != ${#authentication.getName()}"></option>
-                        <option th:if="${teachers.size()} > 0">No teachers assigned</option>
+                                th:if="${teacher.role == 'ROLE_TEACHER'}"></option>
+                        <option disabled>Students</option>
+                        <option th:value="${teacher.email}" th:each="teacher: ${teachers}"
+                                th:text="${teacher.firstName} + ' ' + ${teacher.lastName} + ' : ' + ${teacher.email}"
+                                th:if="${teacher.email != #authentication.getName() && teacher.role == 'ROLE_STUDENT'}"></option>
                     </select>
+                </div>
+
+            </div>
+            <div class="row">
+                <div class="col-md-12 text-center" th:if="${param.error}">
+                    <p>ALREADY ASSIGNED</p>
                 </div>
             </div>
             <div class="row">
                 <div class="col-md-12">
-                    <button type="submit" class="createCourseButton">{DUMMY BTN ATM}<i
+                    <button type="submit" name="update" value="Update" class="createCourseButton hoverAnimation"
+                            sec:authorize="hasRole('ROLE_TEACHER')">Update course<i
+                            class="fas fa-arrow-right faArrow"></i>
+                    </button><button type="submit" name="signUp" value="signUp" class="createCourseButton hoverAnimation"
+                            sec:authorize="hasRole('ROLE_STUDENT')">Sign up<i
                             class="fas fa-arrow-right faArrow"></i></button>
+                    <button type="submit" name="delete" value="Delete" class="deleteCourseButton"
+                            sec:authorize="hasRole('ROLE_TEACHER')">Delete course
+                    </button>
                 </div>
             </div>
         </form>

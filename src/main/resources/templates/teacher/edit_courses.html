@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org/">
 <head>
     <meta charset="UTF-8"/>
-    <title>My courses</title>
+    <title>Edit course</title>
     <th:block th:include="fragments/head :: headInclude"/>
 
 </head>
@@ -11,13 +11,14 @@
 <!--Navbar-->
 <nav th:replace="fragments/navbar :: navbar"></nav>
 
+<input type="text" hidden="hidden" th:value="${username}" id="username"/>
 <!--My courses-->
 <div class="container">
     <div class="text-center">
-        <h1 class="createCoursesHeader">Pending courses</h1>
+        <h1 class="createCoursesHeader">Edit course</h1>
     </div>
     <div class="createCourseBox">
-        <form method="post" th:action="@{/teacher/myCourses}">
+        <form method="post" th:action="@{/teacher/edit_course}">
             <div class="row text-center">
                 <div class="col">
                     <label class="inputLabel">Name of the course (English)</label>
@@ -32,17 +33,14 @@
                 <div class="col">
                     <label class="inputLabel">Mandatory/elective</label>
                 </div>
-                <div class="col">
-                    <label class="inputLabel">Signup date</label>
-                </div>
-
             </div>
 
 
             <!--Courses starts here-->
 
-            <a th:href="'/student/course/'+${course.getId()}"  th:each="course : ${courses}">
+            <a th:href="'/teacher/course/edit/'+${course.id}" th:each="course : ${courses}">
                 <div class="row text-center myCoursesRow">
+                    <!-- TODO: + courses hvor user er tilknyttet-->
 
                     <p class="col textInput myCoursesText" th:text="${course.getCourseNameInEnglish()}">Full stack</p>
                     <p class="col textInput myCoursesText" th:text="${course.getSemester()}">2</p>
@@ -51,16 +49,12 @@
                         <p class="textInput myCoursesText" th:if="${course.mandatory}">Mandatory</p>
                         <p class="textInput myCoursesText" th:unless="${course.mandatory}">Elective</p>
                     </span>
-                    <p class="col textInput myCoursesText"></p>
                 </div>
 
             </a>
 
         </form>
     </div>
-
-
-
 </div>
 
 

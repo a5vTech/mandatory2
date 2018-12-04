@@ -20,28 +20,28 @@
             <div class="row">
                 <div class="col-md-6">
                     <label class="inputLabel">First name</label>
-                    <input class="textInput" type="text" th:field="${user.firstName}"
+                    <input required="required" class="textInput" type="text" name="firstName" th:field="${user.firstName}"
                            placeholder="First name"/>
                 </div>
                 <div class="col-md-6">
                     <label class="inputLabel">Last name</label>
-                    <input type="text" class="textInput" th:field="${user.lastName}"/>
+                    <input required="required" type="text" class="textInput" th:field="${user.lastName}"/>
                 </div>
             </div>
             <div class="row ">
                 <div class="col-md-6">
                     <label class="inputLabel">Phone</label>
-                    <input type="text" class="textInput" th:field="${user.phone}"/>
+                    <input required="required" type="text" class="textInput" th:field="${user.phone}"/>
                 </div>
                 <div class="col-md-6">
                     <label class="inputLabel">Email</label>
-                    <input type="text" class="textInput" th:field="${user.email}"/>
+                    <input disabled type="text" class="textInput" th:field="${user.email}"/>
                 </div>
             </div>
             <div class="row">
                 <div class="col-md-6">
                     <label class="inputLabel">Old password</label>
-                    <input type="text" class="textInput" th:field="${user.phone}"/>
+                    <input required="required" type="password" class="textInput" placeholder="********"/> <!-- TODO: fix password -->
                     <div class="col-md-6"></div>
                 </div>
                 <div class="col-md-6">
@@ -66,7 +66,7 @@
             <div class="row">
                 <div class="col-md-6">
                     <label class="inputLabel">New password</label>
-                    <input id="newPassBox" type="text" class="textInput" th:field="${user.phone}"
+                    <input id="newPassBox" type="password" class="textInput" th:field="${user.password}"
                            pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"/>
                 </div>
                 <div class="col-md-6"></div>
@@ -74,7 +74,7 @@
             <div class="row">
                 <div class="col-md-6">
                     <label class="inputLabel">Confirm password</label>
-                    <input id="confirmPassBox" type="text" class="textInput" th:field="${user.phone}"
+                    <input id="confirmPassBox" type="password" class="textInput"
                            pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"/>
                 </div>
                 <div class="col-md-6"></div>

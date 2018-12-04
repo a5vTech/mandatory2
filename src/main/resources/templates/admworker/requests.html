@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Requests</title>
+    <th:block th:include="fragments/head :: headInclude"/>
+
+</head>
+<body>
+
+<!--Navbar-->
+<nav th:replace="fragments/navbar :: navbar"></nav>
+
+<!--My courses-->
+<div class="container">
+    <div class="text-center">
+        <h1 class="createCoursesHeader">Requests</h1>
+    </div>
+    <div class="createCourseBox">
+        <form method="post" th:action="@{/teacher/myCourses}">
+            <div class="row text-center">
+                <div class="col">
+                    <label class="inputLabel">Name of the course (English)</label>
+                </div>
+                <div class="col-md-1">
+                    <label class="inputLabel">Semester</label>
+                </div>
+                <div class="col-md-2">
+                    <label class="inputLabel">Class code</label>
+                </div>
+                <div class="col">
+                    <label class="inputLabel">Requester</label>
+                </div>
+                <div class="col">
+                    <label class="inputLabel">Request date</label>
+                </div>
+
+            </div>
+
+
+            <!--Courses starts here-->
+
+            <div class="hoverEffect requestRow" th:onclick="'javascript:modalActivate('+${userCourse.getUser().getId()}+')'" th:each="userCourse : ${userCourses}">
+                <div class="row text-center myCoursesRow">
+                    <p class="col requestsText myCoursesText" th:text="${userCourse.getCourse().getCourseNameInEnglish()}">Full stack</p>
+                    <p class="col-md-1 requestsText myCoursesText" th:text="${userCourse.getCourse().getSemester()}">2</p>
+                    <p class="col-md-2 requestsText myCoursesText" th:text="${userCourse.getCourse().getClassCode()}">DAT17C</p>
+                    <p class="col requestsText myCoursesText" th:text="${userCourse.getUser().getEmail()}"></p>
+                    <p class="col requestsText myCoursesText" th:text="${#strings.substring(userCourse.getSignUpDate(),8,10)} + '-' +${#strings.substring(userCourse.getSignUpDate(),5,7)} + '-' + ${#strings.substring(userCourse.getSignUpDate(),0,4)}"></p>
+
+                </div>
+
+            </div>
+
+        </form>
+    </div>
+
+
+
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="acceptModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                Accept request?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="declineButton">Reject</button>
+                <button type="button" class="acceptButton" data-dismiss="modal">Accept</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script type="text/javascript">
+    function modalActivate(id) {
+        $('#acceptModal').modal('show');
+        var div = $(".requestRow");
+        var test = id;
+        console.log(test);
+    }
+</script>
+</body>
+</html>

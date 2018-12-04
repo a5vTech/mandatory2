@@ -23,6 +23,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 @SessionAttributes("username")
@@ -84,10 +85,13 @@ public class LoginController {
 //
         UserCourse userCourse = new UserCourse();
         userCourse.setUser(user);
-        userCourse.setSignUpDate("Date signup");
+        userCourse.setSignUpDate(LocalDateTime.now());
         Course course1 = new Course();
+        userCourse.setCourse(course1);
+        userCourse.getCourse().setCreatedBy(user.getEmail());
         course1.setCourseNameInDanish("TEETE");
         userCourse.setCourse(course1);
+        userCourse.getCourse().setCreatedBy("HULLA");
         userCourseRepository.save(userCourse);
         user.userCourses.add(userCourse);
         userRepository.save(user);
@@ -96,7 +100,6 @@ public class LoginController {
         User userNew = userRepository.findByEmail("teacher");
 
         for (UserCourse course : userNew.userCourses){
-            System.out.println("TEST");
             System.out.println("COURSE DATE : " + course.getSignUpDate());
             System.out.println("COURSE NAME  : " + course.getCourse().getCourseNameInDanish());
 

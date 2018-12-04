@@ -2,7 +2,9 @@ package com.example.demo.model;
 
 import javax.persistence.*;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 public class Course {
@@ -31,7 +33,7 @@ public class Course {
 
 
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "course")
-    public List<UserCourse> course = new ArrayList<>();
+    public Set<UserCourse> userCourses = new HashSet<>();
 
 
 
@@ -192,6 +194,15 @@ public class Course {
 //    public void setUsers(List<User> users) {
 //        this.user = users;
 //    }
+
+
+    public Set<UserCourse> getUserCourses() {
+        return userCourses;
+    }
+
+    public void setUserCourses(Set<UserCourse> userCourses) {
+        this.userCourses = userCourses;
+    }
 
     public String getCreatedBy() {
         return createdBy;

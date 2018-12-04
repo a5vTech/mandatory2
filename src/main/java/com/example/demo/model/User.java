@@ -4,7 +4,9 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 public class User {
@@ -24,7 +26,7 @@ public class User {
 //    private byte[] image;
 
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "user")
-    public List<UserCourse> userCourses = new ArrayList<>();
+    public Set<UserCourse> userCourses = new HashSet<>();
 
 //    @ManyToMany(cascade = CascadeType.ALL)
 //    @JoinTable(name = "course_users",
@@ -109,6 +111,14 @@ public class User {
 //        this.roles = roles;
 //    }
 
+
+    public Set<UserCourse> getUserCourses() {
+        return userCourses;
+    }
+
+    public void setUserCourses(Set<UserCourse> userCourses) {
+        this.userCourses = userCourses;
+    }
 
     public Integer getPhone() {
         return phone;

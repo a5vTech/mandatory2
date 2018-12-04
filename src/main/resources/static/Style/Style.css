@@ -23,6 +23,15 @@ body {
     color: #233249;
 }
 
+input[type="text"][disabled] {
+    background-color: #ffffff;
+    color: #a7a7a7
+}
+
+.hoverEffect {
+    cursor: pointer;
+}
+
 .loginError {
     background-color: #ea5045;
     margin-top: 15px;
@@ -160,6 +169,61 @@ p {
     /* transform: translateX(1px); */
 
 }
+
+.modal-content {
+    border-radius: 0;
+    background-color: #233249;
+}
+
+.modal-header {
+    border-bottom: none;
+}
+
+.modal-body {
+    color: #fff;
+    margin: auto;
+    font-size: 48px;
+    padding: 0;
+    text-transform: uppercase;
+}
+
+.modal-footer {
+    border-top: none;
+}
+
+.close {
+    float: right;
+    font-size: 2.5rem;
+    font-weight: 700;
+    line-height: 1;
+    color: #fff !important;
+    text-shadow: none;
+    opacity: 1;
+}
+
+.acceptButton {
+    background-color: #5aaf6b;
+    color: #fff;
+    border: none;
+    padding: 12px 17px;
+    text-transform: uppercase;
+    font-size: 24px;
+    margin-top: 30px;
+    cursor: pointer;
+}
+
+.declineButton {
+    background-color: #ea5045;
+    color: #fff;
+    border: none;
+    padding: 12px 17px;
+    text-transform: uppercase;
+    font-size: 24px;
+    margin-top: 30px;
+    cursor: pointer;
+    margin-right: 10px !important;
+}
+
 .createCourseButton {
     background-color: #233249;
     color: #fff;
@@ -242,12 +306,41 @@ select option {
     transition: .3s;
 }
 
+.requestsText {
+    width: 100%;
+    padding: .375rem .75rem;
+    border-width: 0;
+    outline: none;
+    color: #233249;
+    margin-bottom: 0px;
+}
+
 .myCoursesText {
     font-family: "Helvetica Neue Less Condensed", sans-serif;
     transition: .3s;
 }
 
-/* The message box is shown when the user clicks on the password field */
+.deleteCourseButton {
+    margin-right: 25px;
+    background-color: #de533d;
+    color: #fff;
+    border: none;
+    padding: 12px 17px;
+    text-transform: uppercase;
+    font-size: 24px;
+    cursor: pointer;
+    float: left;
+}
+
+.deleteCourseButton:hover {
+    background-color: #ff634a;
+}
+
+.marginTop50px {
+    margin-top: 50px;
+}
+
+    /* The message box is shown when the user clicks on the password field */
 #message {
     display: none;
     color: #fff;
