@@ -43,83 +43,20 @@ public class LoginController {
 
     @GetMapping({"/", "/login"})
     public String login(Model model) {
-//        createTestUser();
+        createTestUser();
         return "login";
     }
 
-    @GetMapping("/test")
-    @ResponseBody
-    public String test() {
-        User user = userRepository.findByEmail("teacher");
-//        Course cour = courseRepository.findByClassCode("DAT20C");
-//        for (User courUser : cour.getUsers()) {
-//            System.out.println("User: " + courUser.getEmail());
-//        }
-//
-//        for (Course c : user.getCourses()) {
-//            System.out.println("Class name " + c.getClassCode());
-//        }
-//        File file = new File("C:\\Users\\mikke_000\\Desktop\\clock.png");
-//        byte[] bFile = new byte[(int) file.length()];
-//
-//        try {
-//            FileInputStream fileInputStream = new FileInputStream(file);
-//            fileInputStream.read(bFile);
-//            fileInputStream.close();
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
-//
-//        user.setImage(bFile);
-//        userRepository.save(user);
-//
-//
-//        try {
-//            FileOutputStream fos = new FileOutputStream("C:\\Users\\mikke_000\\floobits\\share\\a5vTech\\Mandatory2\\src\\main\\resources\\static\\Images\\user.png");
-//            fos.write(user.getImage());
-//            fos.close();
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
 
-//
-        UserCourse userCourse = new UserCourse();
-        userCourse.setUser(user);
-        userCourse.setSignUpDate(LocalDateTime.now());
-        Course course1 = new Course();
-        userCourse.setCourse(course1);
-        userCourse.getCourse().setCreatedBy(user.getEmail());
-        course1.setCourseNameInDanish("TEETE");
-        userCourse.setCourse(course1);
-        userCourse.getCourse().setCreatedBy("HULLA");
-        userCourseRepository.save(userCourse);
-        user.userCourses.add(userCourse);
-        userRepository.save(user);
-
-
-        User userNew = userRepository.findByEmail("teacher");
-
-        for (UserCourse course : userNew.userCourses){
-            System.out.println("COURSE DATE : " + course.getSignUpDate());
-            System.out.println("COURSE NAME  : " + course.getCourse().getCourseNameInDanish());
-
-        }
-
-
-
-
-
-        return "test";
-    }
 
     public void createTestUser() {
 
-//        User user = userRepository.findByEmail("mikk@stud.kea.dk");
+//       User user = userRepository.findByEmail("mikk@stud.kea.dk");
         User user = new User();
-        user.setFirstName("Jesper");
-        user.setLastName("Petersen");
-        user.setEmail("teacher");
-        user.setRole("ROLE_TEACHER");
+        user.setFirstName("Mikkel");
+        user.setLastName("Kofoed");
+        user.setEmail("mikk065y@stud.kea.dk");
+        user.setRole("ROLE_STUDENT");
         user.setPassword(passwordEncoder.encode("1234"));
 
 

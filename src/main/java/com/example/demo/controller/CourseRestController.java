@@ -41,12 +41,6 @@ public class CourseRestController {
     }
 
 
-//    @GetMapping("/api/student/courses/")
-//    public ResponseEntity<List> studentCourses(@RequestParam String email) {
-//        List<Course> courses = userRepository.findByEmail(email).getCourses();
-//        return new ResponseEntity<>(courses, HttpStatus.OK);
-//    }
-
 
     @GetMapping("/testPassword")
     public ResponseEntity<String> passCheck(@RequestParam String oldPass) {

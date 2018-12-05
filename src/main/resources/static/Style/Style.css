@@ -36,6 +36,16 @@ select[disabled] {
     appearance: none;
 }
 
+.accessDenied{
+    color: #fff;
+    background-color: #ea5045;
+    margin-top: 200px;
+}
+
+.keaColour {
+    background-color: #17a2b8;
+}
+
 .editCourseHeader {
     margin: 50px 0;
     background-color: #B05544;
@@ -96,6 +106,19 @@ select[disabled] {
 
 .myCoursesBox {
     background-color: #ff8a44;
+    color: #fff;
+    padding: 25px;
+    margin-bottom: 50px;
+}
+
+.allCoursesHeader {
+    margin: 50px 0;
+    background-color: #cd5c5c;
+    color: #fff;
+}
+
+.allCoursesBox {
+    background-color: #6495ed;
     color: #fff;
     padding: 25px;
     margin-bottom: 50px;
