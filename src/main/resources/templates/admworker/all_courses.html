@@ -20,14 +20,18 @@
     <div class="allCoursesBox">
         <form method="post" th:action="@{/teacher/myCourses}">
             <div class="row text-center">
-                <div class="col-md-4">
+                <div class="col-md-5">
                     <label class="inputLabel">Name of the course (English)</label>
                 </div>
-                <div class="col">
+                <div class="col-md-2">
                     <label class="inputLabel">Semester</label>
                 </div>
-                <div class="col">
+                <div class="col-md-2">
                     <label class="inputLabel">Class code</label>
+                </div>
+
+                <div class="col-md-3">
+                    <label class="inputLabel">Mandatory/elective</label>
                 </div>
 
             </div>
@@ -38,9 +42,13 @@
             <a th:href="'/admworker/course/'+${course.id}"  th:each="course : ${courses}">
                 <div class="row text-center myCoursesRow">
 
-                    <p class="col-md-4 textInput myCoursesText" th:text="${course.getCourseNameInEnglish()}">Full stack</p>
-                    <p class="col textInput myCoursesText" th:text="${course.getSemester()}">2</p>
-                    <p class="col textInput myCoursesText" th:text="${course.getClassCode()}">DAT17C</p>
+                    <p class="col-md-5 requestsText myCoursesText" th:text="${course.getCourseNameInEnglish()}">Full stack</p>
+                    <p class="col-md-2 requestsText myCoursesText" th:text="${course.getSemester()}">2</p>
+                    <p class="col-md-2 requestsText myCoursesText" th:text="${course.getClassCode()}">DAT17C</p>
+                    <span class="col-md-3">
+                        <p class="requestsText myCoursesText" th:if="${course.mandatory}">Mandatory</p>
+                        <p class="requestsText myCoursesText" th:unless="${course.mandatory}">Elective</p>
+                    </span>
 
                 </div>
 

@@ -39,15 +39,6 @@ public class Course {
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "course")
     public Set<UserCourse> userCourses = new HashSet<>();
 
-
-//    @ManyToMany(mappedBy = "courses")
-//    private List<User> user = new ArrayList<>();
-
-    //Teachers
-
-    //Students
-
-
     public Course() {
     }
 
@@ -188,15 +179,6 @@ public class Course {
     public void setClassCode(String classCode) {
         this.classCode = classCode;
     }
-
-//    public List<User> getUsers() {
-//        return user;
-//    }
-//
-//    public void setUsers(List<User> users) {
-//        this.user = users;
-//    }
-
 
     public Set<UserCourse> getUserCourses() {
         return userCourses;

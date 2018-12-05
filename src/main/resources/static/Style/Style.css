@@ -43,7 +43,7 @@ select[disabled] {
 }
 
 .keaColour {
-    background-color: #17a2b8;
+    background-color: #00c6c4;
 }
 
 .editCourseHeader {
@@ -63,6 +63,32 @@ select[disabled] {
     margin: 50px 0;
     background-color: #FF007F;
     color: #fff;
+}
+
+.findCoursesBox {
+    background-color: #5aa75a;
+    color: #233249;
+    padding: 25px;
+    margin-bottom: 50px;
+}
+
+.myCoursesHeader {
+    margin: 50px 0;
+    background-color: #FF007F;
+    color: #fff;
+}
+
+.myTeacherCoursesHeader {
+    margin: 50px 0;
+    background-color: #d39e0054;
+    color: #2c3748;
+}
+
+.myTeacherCoursesBox {
+    background-color: #5f00ff40;
+    color: #233249;
+    padding: 25px;
+    margin-bottom: 50px;
 }
 
 .findCoursesBox {
@@ -206,10 +232,6 @@ p {
     border-width: 0;
     outline: none;
     color: #233249;
-}
-
-.myCoursesHeader {
-    margin: 50px 0;
 }
 
 .backgroundCover {

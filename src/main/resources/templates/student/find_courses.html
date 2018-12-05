@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org/">
 <head>
     <meta charset="UTF-8"/>
-    <title>My courses</title>
+    <title>Find courses</title>
     <th:block th:include="fragments/head :: headInclude"/>
 
 </head>
@@ -38,7 +38,6 @@
 
 
             <!--Courses starts here-->
-
             <a th:href="'/student/course/'+${course.id}+'?signup'"  th:each="course : ${courses}">
                 <div class="row text-center myCoursesRow">
 
@@ -56,10 +55,7 @@
         </form>
     </div>
 
-
-
 </div>
-
 
 </body>
 </html>

@@ -35,13 +35,9 @@
                 </div>
             </div>
 
-
             <!--Courses starts here-->
-
             <a th:href="'/teacher/course/edit/'+${course.id}" th:each="course : ${courses}">
                 <div class="row text-center myCoursesRow">
-                    <!-- TODO: + courses hvor user er tilknyttet-->
-
                     <p class="col textInput myCoursesText" th:text="${course.getCourseNameInEnglish()}">Full stack</p>
                     <p class="col textInput myCoursesText" th:text="${course.getSemester()}">2</p>
                     <p class="col textInput myCoursesText" th:text="${course.getClassCode()}">DAT17C</p>

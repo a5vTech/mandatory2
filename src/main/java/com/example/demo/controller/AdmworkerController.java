@@ -8,15 +8,12 @@ import com.example.demo.repository.UserCourseRepository;
 import com.example.demo.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.List;
 
 @Controller
@@ -27,6 +24,8 @@ public class AdmworkerController {
     UserRepository userRepository;
     @Autowired
     UserCourseRepository userCourseRepository;
+    @Autowired
+    PasswordEncoder passwordEncoder;
 
 
     @GetMapping("/admworker")
@@ -40,24 +39,24 @@ public class AdmworkerController {
         List<UserCourse> userCourses = userCourseRepository.findAllUserCoursesByAcceptedOrderBySignUpDate(false);
         List<Course> courses = new ArrayList<>();
 
-        for(UserCourse userCourse : userCourses){
+        for (UserCourse userCourse : userCourses) {
             courses.add(userCourse.getCourse());
         }
-        model.addAttribute("courses",courses);
-        model.addAttribute("userCourses",userCourses);
+        model.addAttribute("courses", courses);
+        model.addAttribute("userCourses", userCourses);
         return "admworker/requests";
     }
 
 
     @PostMapping(value = "/admworker/requests", params = "reject")
-    public String reject(@RequestParam String hiddenId){
+    public String reject(@RequestParam String hiddenId) {
         UserCourse userCourse = userCourseRepository.findUserCourse(Long.parseLong(hiddenId));
         userCourseRepository.deleteById(Long.parseLong(hiddenId));
         return "redirect:/admworker/requests";
     }
 
     @PostMapping(value = "/admworker/requests", params = "accept")
-    public String accept(@RequestParam String hiddenId){
+    public String accept(@RequestParam String hiddenId) {
         UserCourse userCourse = userCourseRepository.findUserCourse(Long.parseLong(hiddenId));
         userCourse.setAccepted(true);
         userCourseRepository.save(userCourse);
@@ -95,14 +94,21 @@ public class AdmworkerController {
         return "admworker/course";
     }
 
+    @GetMapping("/admworker/createUser")
+    public String createUser(Model model) {
+        model.addAttribute("user", new User());
+        return "admworker/create_user";
+    }
+
+    @PostMapping("/admworker/createUser")
+    public String createUser(@ModelAttribute User user) {
+       user.setPassword(passwordEncoder.encode(user.getPassword()));
+        userRepository.save(user);
 
 
 
-
-
-
-
-
+        return "redirect:/admworker/requests";
+    }
 
 
 }

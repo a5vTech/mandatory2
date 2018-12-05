@@ -7,8 +7,6 @@ import com.example.demo.repository.CourseRepository;
 import com.example.demo.repository.UserCourseRepository;
 import com.example.demo.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.access.annotation.Secured;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -39,7 +37,6 @@ public class StudentController {
 
     @GetMapping("/student/course")
     public String student(Model model) {
-        //Get current user
         User currentUser = userRepository.findByEmail(SecurityContextHolder.getContext().getAuthentication().getName());
 
         return "student/course";
@@ -76,8 +73,6 @@ public class StudentController {
             try {
                 userCourseRepository.save(userCourse);
             } catch (Exception e) {
-//            IF USER ALREADY REQUESTED TO SIGN UP
-                System.out.println("ALREADY SIGNED UP");
                 return "redirect:/student/course/" + course.getId() + "?error";
 
             }
@@ -108,7 +103,6 @@ public class StudentController {
 
         List<UserCourse> userCourses = userCourseRepository.findAllUserCoursesByUserIdAndAccepted(currentuser.getId(), false);
 
-
         return "student/find_courses";
 
     }
@@ -127,14 +121,5 @@ public class StudentController {
 
         return "student/pending_courses";
     }
-//
-//    @GetMapping("/settings")
-//    public String settings(Model model) {
-//        User currentuser = userRepository.findByEmail(SecurityContextHolder.getContext().getAuthentication().getName());
-//        model.addAttribute("user", currentuser);
-//        model.addAttribute("course", new Course());
-//
-//        return "settings";
-//    }
 
 }

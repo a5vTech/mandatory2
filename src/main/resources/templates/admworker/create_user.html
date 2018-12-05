@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset=" UTF-8"/>
+    <title>Create user</title>
+    <th:block th:include="fragments/head :: headInclude"/>
+
+</head>
+<body>
+<nav th:replace="fragments/navbar :: navbar"></nav>
+<div class="container">
+    <div class="text-center">
+        <h1 class="createCoursesHeader">Create user</h1>
+    </div>
+    <div class="createCourseBox">
+        <form method="post" th:action="@{/admworker/createUser}">
+            <div class="row">
+                <div class="col-md-6">
+                    <label class="inputLabel">First name</label>
+                    <input required class="textInput" type="text" th:field="${user.firstName}"/>
+                </div>
+                <div class="col-md-6">
+                    <label class="inputLabel">Last name</label>
+                    <input required type="text" class="textInput" th:field="${user.lastName}"/>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <label class="inputLabel">Email</label>
+                    <input required type="text" class="textInput" th:field="${user.email}"/>
+                </div>
+                <div class="col-md-6">
+                    <label class="inputLabel">Phone number</label>
+                    <input required type="text" class="textInput" th:field="${user.phone}"/>
+                </div>
+            </div>
+
+
+            <div class="row">
+                <div class="col-md-6">
+                    <label class="inputLabel">Role</label>
+                    <input required type="text" class="textInput" th:field="${user.role}"/>
+                </div>
+                <div class="col-md-6">
+                    <label class="inputLabel">Password</label>
+                    <input required type="text" class="textInput" th:field="${user.password}"/>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <button type="submit" class="createCourseButton hoverAnimation">Create user<i
+                            class="fas fa-arrow-right faArrow"></i></button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+</body>
+</html>

@@ -28,6 +28,9 @@
                     <a class="nav-link" href="/student/pendingCourses">Pending courses</a>
                 </li>
                 <li class="nav-item" sec:authorize="hasRole('ROLE_TEACHER')">
+                    <a class="nav-link" href="/teacher/myCourses">My courses</a>
+                </li>
+                <li class="nav-item" sec:authorize="hasRole('ROLE_TEACHER')">
                     <a class="nav-link" href="/teacher/createCourse">Create course</a>
                 </li>
                 <li class="nav-item" sec:authorize="hasRole('ROLE_TEACHER')">
@@ -38,6 +41,9 @@
                 </li>
                 <li class="nav-item" sec:authorize="hasRole('ROLE_ADMWORKER')">
                     <a class="nav-link" href="/admworker/allCourses">All courses</a>
+                </li>
+                <li class="nav-item" sec:authorize="hasRole('ROLE_ADMWORKER')">
+                    <a class="nav-link" href="/admworker/createUser">Create user</a>
                 </li>
 
                 <li class="nav-item dropdown navbarSettings">

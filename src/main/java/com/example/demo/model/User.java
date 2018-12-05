@@ -1,13 +1,8 @@
 package com.example.demo.model;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonView;
-
 import javax.persistence.*;
-import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -23,18 +18,9 @@ public class User {
     private String password;
     private Boolean enabled = true;
     private String role;
-    //    @Lob
-//    @Column(name="image", nullable=false, columnDefinition="mediumblob")
-//    private byte[] image;
+
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "user")
     public Set<UserCourse> userCourses = new HashSet<>();
-
-//    @ManyToMany(cascade = CascadeType.ALL)
-//    @JoinTable(name = "course_users",
-//            joinColumns = {@JoinColumn(name = "user_id")},
-//            inverseJoinColumns = {@JoinColumn(name = "course_id")})
-//    @JsonIgnore //Removes field from JSON
-//    private List<Course> courses = new ArrayList<>();
 
     public User() {
     }
@@ -79,14 +65,6 @@ public class User {
     public void setPassword(String password) {
         this.password = password;
     }
-//
-//    public List<Course> getCourses() {
-//        return courses;
-//    }
-//
-//    public void setCourses(List<Course> courses) {
-//        this.courses = courses;
-//    }
 
     public Boolean getEnabled() {
         return enabled;
@@ -104,15 +82,6 @@ public class User {
         this.role = role;
     }
 
-    //    public Set<UserRoles> getRoles() {
-//        return roles;
-//    }
-//
-//    public void setRoles(Set<UserRoles> roles) {
-//        this.roles = roles;
-//    }
-
-
     public Set<UserCourse> getUserCourses() {
         return userCourses;
     }
@@ -128,6 +97,5 @@ public class User {
     public void setPhone(Integer phone) {
         this.phone = phone;
     }
-
 
 }

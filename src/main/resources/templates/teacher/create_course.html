@@ -1,6 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org"
-      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset=" UTF-8"/>
     <title>Create course</title>
@@ -42,7 +41,6 @@
                 </div>
                 <div class="col-md-6">
                     <label class="inputLabel">Mandatory or Elective</label>
-                    <!--<input required type="text" class="textInput" th:field="${course.mandatory}"/>-->
                     <select id="mandatory" class="textInput" data-placeholder="Mandatory or elective"
                             th:field="${course.mandatory}">
                         <option value="" hidden>Choose</option>
@@ -58,7 +56,6 @@
                 </div>
                 <div class="col-md-6">
                     <label class="inputLabel">Course language</label>
-                    <!--<input required type="text" class="textInput" th:field="${course.courseLanguage}"/>-->
                     <select class="textInput" data-placeholder="Choose a Language... "
                             th:field="${course.courseLanguage}">
                         <option value="" hidden>Choose</option>
@@ -185,10 +182,6 @@
                         <option th:value="${teacher.email}" th:each="teacher: ${teachers}"
                                 th:text="${teacher.firstName} + ' ' + ${teacher.lastName} + ' : ' + ${teacher.email}"
                                 th:if="${teacher.email != #authentication.getName() && teacher.role == 'ROLE_TEACHER'}"></option>
-                        <!--<option disabled>Students</option>-->
-                        <!--<option th:value="${teacher.email}" th:each="teacher: ${teachers}"-->
-                                <!--th:text="${teacher.firstName} + ' ' + ${teacher.lastName} + ' : ' + ${teacher.email}"-->
-                                <!--th:if="${teacher.email != #authentication.getName() && teacher.role == 'ROLE_STUDENT'}"></option>-->
                     </select>
 
                 </div>

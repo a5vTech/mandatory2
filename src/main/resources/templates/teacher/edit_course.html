@@ -1,9 +1,8 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org"
-      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset=" UTF-8"/>
-    <title>Create course</title>
+    <title>Edit course</title>
     <th:block th:include="fragments/head :: headInclude"/>
 
 </head>
@@ -43,7 +42,6 @@
                 </div>
                 <div class="col-md-6">
                     <label class="inputLabel">Mandatory or Elective</label>
-                    <!--<input required type="text" class="textInput" th:field="${course.mandatory}"/>-->
                     <select id="mandatory" class="textInput" data-placeholder="Mandatory or elective"
                             th:field="${course.mandatory}">
                         <option id="tester" value="true">Mandatory</option>
@@ -58,7 +56,6 @@
                 </div>
                 <div class="col-md-6">
                     <label class="inputLabel">Course language</label>
-                    <!--<input required type="text" class="textInput" th:field="${course.courseLanguage}"/>-->
                     <select class="textInput" data-placeholder="Choose a Language... "
                             th:field="${course.courseLanguage}">
                         <option value="Afrikanns">Afrikanns</option>

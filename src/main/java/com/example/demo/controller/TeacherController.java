@@ -6,7 +6,6 @@ import com.example.demo.model.UserCourse;
 import com.example.demo.repository.CourseRepository;
 import com.example.demo.repository.UserCourseRepository;
 import com.example.demo.repository.UserRepository;
-import net.bytebuddy.description.method.ParameterList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -15,8 +14,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
 
 @SuppressWarnings("Duplicates")
@@ -36,8 +33,6 @@ public class TeacherController {
     public String createCourse(Model model) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         String username = auth.getName();
-//        System.out.println(username);
-//        model.addAttribute("username", username);
         model.addAttribute("course", new Course());
 
         List<User> teachers = userRepository.findAll();
@@ -72,7 +67,6 @@ public class TeacherController {
             userRepository.save(user);
         }
 
-
         return "redirect:/teacher/myCourses";
     }
 
@@ -86,15 +80,6 @@ public class TeacherController {
         return "teacher/my_courses";
     }
 
-//
-//    @GetMapping("/settings")
-//    public String settings(Model model) {
-//        User currentuser = userRepository.findByEmail(SecurityContextHolder.getContext().getAuthentication().getName());
-//        model.addAttribute("user", currentuser);
-//        model.addAttribute("course", new Course());
-//
-//        return "settings";
-//    }
 
     @PostMapping("/settings")
     public String settingsPost(@ModelAttribute User user) {
@@ -121,7 +106,6 @@ public class TeacherController {
         model.addAttribute("teachers", teachers);
         model.addAttribute("students", students);
 
-
         return "student/course";
     }
 
@@ -131,25 +115,17 @@ public class TeacherController {
         Course course = courseRepository.findCourse(id);
         model.addAttribute("course", course);
         List<User> teachers = CourseController.getCourseTeachers(course);
-        System.out.println(teachers.size());
         model.addAttribute("teachers", teachers);
-
 
         return "teacher/edit_course";
     }
 
 
-    //TODO: 2x postmappings
     @PostMapping(value = "/teacher/course/edit", params = "update")
     public String courseUpdatePost(@ModelAttribute Course course, @RequestParam(defaultValue = "{{NONE}}") String teachersListString) {
-        System.out.println("UDATE BUTTON PRESS 136");
 
         List<UserCourse> list = userCourseRepository.findAllByCourse(course);
-//        for (UserCourse uCourse : list) {
-////TODO if list is {{NONE}} delete course ?
-//            userCourseRepository.delete(uCourse);
-//
-//        }
+
         if (!teachersListString.equals("{{NONE}}")) {
 
             String[] teacherMails = teachersListString.split(",");
@@ -167,47 +143,18 @@ public class TeacherController {
         Course courseDB = courseRepository.findCourse(course.getId());
         Long courseDbId = courseDB.getId();
         course.setId(courseDbId);
-        System.out.println("SIZE FROM DB" + courseDB.userCourses.size());
         course.userCourses.clear();
-        System.out.println("SIZE AFTER DB" + courseDB.userCourses.size());
 
         courseDB = course;
-//
-//        List<User> teachers = new ArrayList<>();
+
         courseRepository.save(courseDB);
-//        System.out.println("SIZE AFTER save to DB"+courseDB.userCourses.size());
-//
-//        for (String email : teacherMails) {
-//            teachers.add(userRepository.findByEmail(email));
-//        }
-
-//
-
-
-
-
-    /*    courseDB.setCourseNameInDanish(course.getCourseNameInDanish());
-        courseDB.setCourseNameInEnglish(course.getCourseNameInEnglish());
-        courseDB.setStudyProgram();
-        courseDB.setMandatory();
-        courseDB.setEcts();
-        courseDB.setCourseLanguage();
-        courseDB.setMinimumStudents();
-        courseDB.setExpectedStudents();
-        courseDB. */
-
-//        model.addAttribute("teachers", teachers);
-
 
         return "redirect:/teacher/editCourses";
     }
 
     @PostMapping(value = "/teacher/course/edit", params = "delete")
     public String courseDeletePost(@ModelAttribute Course course) {
-        System.out.println(course.getId());
         courseRepository.deleteById(course.getId());
-        //TODO DELETEBYID (DELETES EVERYTHING ) 
-        System.out.println("DELETED");
         return "redirect:/teacher/editCourses";
     }
 
