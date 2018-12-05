@@ -23,9 +23,82 @@ body {
     color: #233249;
 }
 
-input[type="text"][disabled] {
+input[disabled] {
     background-color: #ffffff;
-    color: #a7a7a7
+    color: #233249;
+}
+
+select[disabled] {
+    background-color: #ffffff;
+    color: #233249;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+}
+
+.editCourseHeader {
+    margin: 50px 0;
+    background-color: #B05544;
+    color: #fff;
+}
+
+.editCourseBox {
+    background-color: #00B269;
+    color: #233249;
+    padding: 25px;
+    margin-bottom: 50px;
+}
+
+.findCoursesHeader {
+    margin: 50px 0;
+    background-color: #FF007F;
+    color: #fff;
+}
+
+.findCoursesBox {
+    background-color: #5aa75a;
+    color: #233249;
+    padding: 25px;
+    margin-bottom: 50px;
+}
+
+.pendingCoursesHeader {
+    margin: 50px 0;
+    background-color: #00695F;
+    color: #fff;
+}
+
+.pendingCoursesBox {
+    background-color: #ffb58f;
+    color: #233249;
+    padding: 25px;
+    margin-bottom: 50px;
+}
+
+.requestsHeader {
+    margin: 50px 0;
+    background-color: #FFCB19;
+    color: #fff;
+}
+
+.requestsBox {
+    background-color: #93a0ff;
+    color: #233249;
+    padding: 25px;
+    margin-bottom: 50px;
+}
+
+.myCoursesHeader {
+    margin: 50px 0;
+    background-color: #5f9ea0;
+    color: #fff;
+}
+
+.myCoursesBox {
+    background-color: #ff8a44;
+    color: #fff;
+    padding: 25px;
+    margin-bottom: 50px;
 }
 
 .hoverEffect {
@@ -179,12 +252,23 @@ p {
     border-bottom: none;
 }
 
+.modal-header p {
+    color: #fff;
+    text-transform: uppercase;
+    margin: auto 0 auto 10px;
+}
+
 .modal-body {
     color: #fff;
-    margin: auto;
+    margin: auto 10px;
     font-size: 48px;
-    padding: 0;
+    padding: 0 30px;
     text-transform: uppercase;
+}
+
+.modal-body label {
+    font-size: 18px;
+    margin-top: 10px
 }
 
 .modal-footer {
@@ -201,6 +285,12 @@ p {
     opacity: 1;
 }
 
+.close span {
+    font-size: 40px;
+    position: relative;
+    bottom: 5px;
+}
+
 .acceptButton {
     background-color: #5aaf6b;
     color: #fff;
@@ -209,7 +299,13 @@ p {
     text-transform: uppercase;
     font-size: 24px;
     margin-top: 30px;
+    margin-right: 10px;
+    margin-bottom: 10px;
     cursor: pointer;
+}
+
+.acceptButton:hover {
+    background-color: #4a934f;
 }
 
 .declineButton {
@@ -221,7 +317,12 @@ p {
     font-size: 24px;
     margin-top: 30px;
     cursor: pointer;
-    margin-right: 10px !important;
+    margin-right: 195px !important;
+    margin-bottom: 10px;
+}
+
+.declineButton:hover {
+    background-color: #cc4e43;
 }
 
 .createCourseButton {
@@ -258,7 +359,11 @@ a:hover{
 }
 
 .multiSelect {
-    height: 125px;
+    height: 175px;
+}
+
+.darkBlue {
+    color: #233249;
 }
 
 .settingsHeader {
@@ -306,7 +411,25 @@ select option {
     transition: .3s;
 }
 
+.searchBox {
+    padding: .375rem .75rem;
+    border-width: 0;
+    outline: none;
+    color: #233249;
+    margin: auto 20px 20px auto;
+    width: 250px;
+}
+
 .requestsText {
+    width: 100%;
+    padding: .375rem .75rem;
+    border-width: 0;
+    outline: none;
+    color: #233249;
+    margin-bottom: 0px;
+}
+
+.findCoursesText {
     width: 100%;
     padding: .375rem .75rem;
     border-width: 0;

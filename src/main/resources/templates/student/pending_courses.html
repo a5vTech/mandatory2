@@ -14,26 +14,25 @@
 <!--My courses-->
 <div class="container">
     <div class="text-center">
-        <h1 class="createCoursesHeader">Pending courses</h1>
+        <h1 class="pendingCoursesHeader">Pending courses</h1>
     </div>
-    <div class="createCourseBox">
+    <div class="pendingCoursesBox">
         <form method="post" th:action="@{/teacher/myCourses}">
             <div class="row text-center">
-                <div class="col">
+                <div class="col-md-4">
                     <label class="inputLabel">Name of the course (English)</label>
                 </div>
-                <div class="col">
+                <div class="col-md-1">
                     <label class="inputLabel">Semester</label>
                 </div>
-                <div class="col">
+                <div class="col-md-2">
                     <label class="inputLabel">Class code</label>
                 </div>
-
-                <div class="col">
+                <div class="col-md-3">
                     <label class="inputLabel">Mandatory/elective</label>
                 </div>
                 <div class="col">
-                    <label class="inputLabel">Signup date</label>
+                    <label class="inputLabel">Request date</label>
                 </div>
 
             </div>
@@ -41,17 +40,20 @@
 
             <!--Courses starts here-->
 
-            <a th:href="'/student/course/'+${course.getId()}"  th:each="course : ${courses}">
+            <a th:href="'/student/course/'+${userCourse.getCourse().getId()}"  th:each="userCourse : ${userCourses}">
                 <div class="row text-center myCoursesRow">
-
-                    <p class="col textInput myCoursesText" th:text="${course.getCourseNameInEnglish()}">Full stack</p>
-                    <p class="col textInput myCoursesText" th:text="${course.getSemester()}">2</p>
-                    <p class="col textInput myCoursesText" th:text="${course.getClassCode()}">DAT17C</p>
-                    <span class="col">
-                        <p class="textInput myCoursesText" th:if="${course.mandatory}">Mandatory</p>
-                        <p class="textInput myCoursesText" th:unless="${course.mandatory}">Elective</p>
+                    <p class="col-md-4 requestsText myCoursesText"
+                       th:text="${userCourse.getCourse().getCourseNameInEnglish()}">Full stack</p>
+                    <p class="col-md-1 requestsText myCoursesText"
+                       th:text="${userCourse.getCourse().getSemester()}">2</p>
+                    <p class="col-md-2 requestsText myCoursesText"
+                       th:text="${userCourse.getCourse().getClassCode()}">DAT17C</p>
+                    <span class="col-md-3">
+                        <p class="requestsText myCoursesText" th:if="${userCourse.getCourse().getMandatory()}">Mandatory</p>
+                        <p class="requestsText myCoursesText" th:unless="${userCourse.getCourse().getMandatory()}">Elective</p>
                     </span>
-                    <p class="col textInput myCoursesText"></p>
+                    <p class="col requestsText myCoursesText"
+                       th:text="${#strings.substring(userCourse.getSignUpDate(),8,10)} + '-' +${#strings.substring(userCourse.getSignUpDate(),5,7)} + '-' + ${#strings.substring(userCourse.getSignUpDate(),0,4)}"></p>
                 </div>
 
             </a>

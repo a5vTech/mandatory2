@@ -1,5 +1,9 @@
 package com.example.demo.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.JsonView;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
@@ -15,10 +19,11 @@ public class UserCourse {
     @DateTimeFormat(pattern = "dd-MM-yyyy")
     private LocalDateTime signUpDate;
 
+
     private Boolean accepted = false;
+
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
     private User user;
-
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
     private Course course;
 

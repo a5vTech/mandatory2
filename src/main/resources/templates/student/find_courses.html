@@ -15,22 +15,22 @@
 <!--My courses-->
 <div class="container">
     <div class="text-center">
-        <h1 class="createCoursesHeader">Find courses</h1>
+        <h1 class="findCoursesHeader">Find courses</h1>
     </div>
-    <div class="createCourseBox">
+    <div class="findCoursesBox">
         <form method="post" th:action="@{/teacher/myCourses}">
             <div class="row text-center">
-                <div class="col">
+                <div class="col-md-5">
                     <label class="inputLabel">Name of the course (English)</label>
                 </div>
-                <div class="col">
+                <div class="col-md-2">
                     <label class="inputLabel">Semester</label>
                 </div>
-                <div class="col">
+                <div class="col-md-2">
                     <label class="inputLabel">Class code</label>
                 </div>
 
-                <div class="col">
+                <div class="col-md-3">
                     <label class="inputLabel">Mandatory/elective</label>
                 </div>
 
@@ -39,15 +39,15 @@
 
             <!--Courses starts here-->
 
-            <a th:href="'/student/course/'+${course.id}"  th:each="course : ${courses}">
+            <a th:href="'/student/course/'+${course.id}+'?signup'"  th:each="course : ${courses}">
                 <div class="row text-center myCoursesRow">
 
-                    <p class="col textInput myCoursesText" th:text="${course.getCourseNameInEnglish()}">Full stack</p>
-                    <p class="col textInput myCoursesText" th:text="${course.getSemester()}">2</p>
-                    <p class="col textInput myCoursesText" th:text="${course.getClassCode()}">DAT17C</p>
-                    <span class="col">
-                        <p class="textInput myCoursesText" th:if="${course.mandatory}">Mandatory</p>
-                        <p class="textInput myCoursesText" th:unless="${course.mandatory}">Elective</p>
+                    <p class="col-md-5 requestsText myCoursesText" th:text="${course.getCourseNameInEnglish()}">Full stack</p>
+                    <p class="col-md-2 requestsText myCoursesText" th:text="${course.getSemester()}">2</p>
+                    <p class="col-md-2 requestsText myCoursesText" th:text="${course.getClassCode()}">DAT17C</p>
+                    <span class="col-md-3">
+                        <p class="requestsText myCoursesText" th:if="${course.mandatory}">Mandatory</p>
+                        <p class="requestsText myCoursesText" th:unless="${course.mandatory}">Elective</p>
                     </span>
                 </div>
 

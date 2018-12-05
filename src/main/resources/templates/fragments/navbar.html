@@ -37,7 +37,7 @@
                     <a class="nav-link" href="/admworker/requests">Requests</a>
                 </li>
                 <li class="nav-item" sec:authorize="hasRole('ROLE_ADMWORKER')">
-                    <a class="nav-link" href="/admworker/studentList">Student list</a>
+                    <a class="nav-link" href="/admworker/allCourses">All courses</a>
                 </li>
 
                 <li class="nav-item dropdown navbarSettings">
@@ -49,7 +49,7 @@
                 </span>
                     <div class="dropdown-menu navDropdown dropdown-menu-right" id="navDropdownMenu"
                          aria-labelledby="navbarDropdownMenuLink">
-                        <a class="dropdown-item" th:href="'/'+${#strings.toLowerCase(#strings.substring(#authentication.getAuthorities(),6,#strings.length(#authentication.getAuthorities())-1))}+'/settings'">Settings</a>
+                        <a class="dropdown-item" th:href="'/settings'">Settings</a>
                         <a class="dropdown-item" href="/logout">Log out</a>
                     </div>
                 </li>

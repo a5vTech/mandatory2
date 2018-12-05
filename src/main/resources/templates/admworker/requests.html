@@ -14,10 +14,12 @@
 <!--My courses-->
 <div class="container">
     <div class="text-center">
-        <h1 class="createCoursesHeader">Requests</h1>
+        <h1 class="requestsHeader">Requests</h1>
     </div>
-    <div class="createCourseBox">
+    <div class="requestsBox">
         <form method="post" th:action="@{/teacher/myCourses}">
+            <div class="row searchRow"><input type="text" class="searchBox" id="searchBox" onkeyup="searchFunction()"
+                                              placeholder="SEARCH"/></div>
             <div class="row text-center">
                 <div class="col">
                     <label class="inputLabel">Name of the course (English)</label>
@@ -39,45 +41,71 @@
 
 
             <!--Courses starts here-->
-
-            <div class="hoverEffect requestRow" th:onclick="'javascript:modalActivate('+${userCourse.getUser().getId()}+')'" th:each="userCourse : ${userCourses}">
-                <div class="row text-center myCoursesRow">
-                    <p class="col requestsText myCoursesText" th:text="${userCourse.getCourse().getCourseNameInEnglish()}">Full stack</p>
-                    <p class="col-md-1 requestsText myCoursesText" th:text="${userCourse.getCourse().getSemester()}">2</p>
-                    <p class="col-md-2 requestsText myCoursesText" th:text="${userCourse.getCourse().getClassCode()}">DAT17C</p>
-                    <p class="col requestsText myCoursesText" th:text="${userCourse.getUser().getEmail()}"></p>
-                    <p class="col requestsText myCoursesText" th:text="${#strings.substring(userCourse.getSignUpDate(),8,10)} + '-' +${#strings.substring(userCourse.getSignUpDate(),5,7)} + '-' + ${#strings.substring(userCourse.getSignUpDate(),0,4)}"></p>
+            <div id="courseList">
+                <div class="hoverEffect requestRow"
+                     th:onclick="'javascript:modalActivate('+${userCourse.getId()}+')'"
+                     th:each="userCourse : ${userCourses}">
+                    <div class="row text-center myCoursesRow">
+                        <p class="col requestsText myCoursesText"
+                           th:text="${userCourse.getCourse().getCourseNameInEnglish()}">Full stack</p>
+                        <p class="col-md-1 requestsText myCoursesText"
+                           th:text="${userCourse.getCourse().getSemester()}">2</p>
+                        <p class="col-md-2 requestsText myCoursesText"
+                           th:text="${userCourse.getCourse().getClassCode()}">DAT17C</p>
+                        <p class="col requestsText myCoursesText" th:text="${userCourse.getUser().getEmail()}"></p>
+                        <p class="col requestsText myCoursesText"
+                           th:text="${#strings.substring(userCourse.getSignUpDate(),8,10)} + '-' +${#strings.substring(userCourse.getSignUpDate(),5,7)} + '-' + ${#strings.substring(userCourse.getSignUpDate(),0,4)}"></p>
+                    </div>
 
                 </div>
-
             </div>
-
         </form>
     </div>
-
 
 
 </div>
 
 <!-- Modal -->
-<div class="modal fade" id="acceptModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                Accept request?
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="declineButton">Reject</button>
-                <button type="button" class="acceptButton" data-dismiss="modal">Accept</button>
+<form method="post" action="/admworker/requests">
+
+    <div class="modal fade" id="acceptModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+         aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <p>Accept request</p>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <label id="idModal" class="inputLabel">Course name</label>
+                        <input id="courseName" disabled type="text" class="textInput"/>
+                    </div>
+                    <div class="row">
+                        <label class="inputLabel">Student name</label>
+                        <input id="studentName" disabled type="text" class="textInput"/>
+                    </div>
+                    <div class="row">
+                        <label class="inputLabel">Request date</label>
+                        <input id="requestDate" disabled type="text" class="textInput"/>
+                    </div>
+                </div>
+
+
+                <input id="hiddenId" hidden type="text" name="hiddenId"/>
+                <div class="modal-footer">
+                    <button type="submit" class="declineButton" name="reject">Reject</button>
+                    <button type="submit" class="acceptButton hoverAnimation" name="accept">
+                        Accept<i
+                            class="fas fa-arrow-right faArrow"></i></button>
+                </div>
+
             </div>
         </div>
     </div>
-</div>
+</form>
 
 
 <script type="text/javascript">
@@ -85,8 +113,58 @@
         $('#acceptModal').modal('show');
         var div = $(".requestRow");
         var test = id;
-        console.log(test);
+        $("#hiddenId").val(id);
+        console.log();
+        var modal = $(this)
+
     }
 </script>
+
+<script>
+    $('#acceptModal').on('show.bs.modal', function (event) {
+        var courseName = '';
+        var studentName = '';
+        var requestDate = '';
+
+        // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
+        // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
+        var modal = $(this)
+        // modal.find('.modal-body').text('Accept or reject')
+        // modal.find('.modal-footer input').val(2)
+    })
+</script>
+
+<script>
+    function searchFunction() {
+        var input, filter, list, row, p, p2, p3, p4, p5, i, txtValue, txtValue2, txtValue3, txtValue4, txtValue5;
+        input = document.getElementById("searchBox");
+        filter = input.value.toUpperCase();
+        list = document.getElementById("courseList");
+        row = list.getElementsByClassName("myCoursesRow");
+        console.log(row);
+        for (i = 0; i < row.length; i++) {
+            p = row[i].getElementsByTagName("p")[0];
+            p2 = row[i].getElementsByTagName("p")[1];
+            p3 = row[i].getElementsByTagName("p")[2];
+            p4 = row[i].getElementsByTagName("p")[3];
+            p5 = row[i].getElementsByTagName("p")[4];
+            txtValue = p.textContent || p.innerText;
+            txtValue2 = p2.textContent || p2.innerText;
+            txtValue3 = p3.textContent || p3.innerText;
+            txtValue4 = p4.textContent || p4.innerText;
+            txtValue5 = p5.textContent || p5.innerText;
+            if (txtValue.toUpperCase().indexOf(filter) > -1
+                || txtValue2.toUpperCase().indexOf(filter) > -1
+                || txtValue3.toUpperCase().indexOf(filter) > -1
+                || txtValue4.toUpperCase().indexOf(filter) > -1
+                || txtValue5.toUpperCase().indexOf(filter) > -1) {
+                row[i].style.display = "";
+            } else {
+                row[i].style.display = "none";
+            }
+        }
+    }
+</script>
+
 </body>
 </html>

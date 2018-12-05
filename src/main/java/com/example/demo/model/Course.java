@@ -1,5 +1,10 @@
 package com.example.demo.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.JsonView;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -31,10 +36,8 @@ public class Course {
     private String semester;
     private String classCode;
 
-
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "course")
     public Set<UserCourse> userCourses = new HashSet<>();
-
 
 
 //    @ManyToMany(mappedBy = "courses")
@@ -47,7 +50,6 @@ public class Course {
 
     public Course() {
     }
-
 
 
     public Long getId() {

@@ -51,7 +51,10 @@ public class StudentController {
         User currentUser = userRepository.findByEmail(SecurityContextHolder.getContext().getAuthentication().getName());
         Course course = courseRepository.findCourse(id);
         model.addAttribute("course", course);
-        model.addAttribute("teachers", CourseController.getCourseTeachers(course));
+        List<User> teachers = CourseController.getCourseTeachers(course);
+        List<User> students = CourseController.getCourseStudents(course);
+        model.addAttribute("teachers", teachers);
+        model.addAttribute("students", students);
 
         return "student/course";
     }
@@ -60,23 +63,25 @@ public class StudentController {
     public String signUpCourse(@ModelAttribute Course course) {
         User currentUser = userRepository.findByEmail(SecurityContextHolder.getContext().getAuthentication().getName());
 
-//        UserCourse userCourse = userCourseRepository.findUserCourseByCourseIdAndUserId(course.getId(), currentUser.getId());
-//        System.out.println(userCourse.id);
+        UserCourse testUserCourse = userCourseRepository.findAllByUserIdAndCourseId(currentUser.getId(), course.getId());
+        if (testUserCourse == null) {
 
-        UserCourse userCourse = new UserCourse();
-        userCourse.setCourse(course);
-        userCourse.setUser(currentUser);
-        userCourse.setSignUpDate(LocalDateTime.now());
+            UserCourse userCourse = new UserCourse();
+            userCourse.setCourse(course);
+            userCourse.setUser(currentUser);
+            userCourse.setSignUpDate(LocalDateTime.now());
 
-        currentUser.userCourses.add(userCourse);
-        course.userCourses.add(userCourse);
-        try{
-            userRepository.save(currentUser);
-        } catch (Exception e){
+            currentUser.userCourses.add(userCourse);
+            course.userCourses.add(userCourse);
+            try {
+                userCourseRepository.save(userCourse);
+            } catch (Exception e) {
 //            IF USER ALREADY REQUESTED TO SIGN UP
-            return "redirect:/student/course/"+course.getId()+"?error";
-        }
+                System.out.println("ALREADY SIGNED UP");
+                return "redirect:/student/course/" + course.getId() + "?error";
 
+            }
+        }
         return "redirect:/student/myCourses";
     }
 
@@ -85,12 +90,12 @@ public class StudentController {
     public String myCourses(Model model) {
         User currentUser = userRepository.findByEmail(SecurityContextHolder.getContext().getAuthentication().getName());
 
-        List<UserCourse> userCourses = userCourseRepository.findAllUserCoursesByUserIdAndAccepted(currentUser.getId(),true);
+        List<UserCourse> userCourses = userCourseRepository.findAllUserCoursesByUserIdAndAccepted(currentUser.getId(), true);
         List<Course> courses = new ArrayList<>();
-        for(UserCourse userCourse : userCourses){
+        for (UserCourse userCourse : userCourses) {
             courses.add(userCourse.getCourse());
         }
-        model.addAttribute("courses",courses);
+        model.addAttribute("courses", courses);
 
 
         return "student/my_courses";
@@ -98,8 +103,11 @@ public class StudentController {
 
     @GetMapping("/student/findCourses")
     public String findCourses(Model model) {
-//        User currentuser = userRepository.findByEmail(SecurityContextHolder.getContext().getAuthentication().getName());
-        model.addAttribute("courses", courseRepository.findAll());
+        User currentuser = userRepository.findByEmail(SecurityContextHolder.getContext().getAuthentication().getName());
+        model.addAttribute("courses", courseRepository.findAllByOrderByCourseNameInEnglish());
+
+        List<UserCourse> userCourses = userCourseRepository.findAllUserCoursesByUserIdAndAccepted(currentuser.getId(), false);
+
 
         return "student/find_courses";
 
@@ -109,23 +117,24 @@ public class StudentController {
     public String pendingCourses(Model model) {
         User currentUser = userRepository.findByEmail(SecurityContextHolder.getContext().getAuthentication().getName());
 
-        List<UserCourse> userCourses = userCourseRepository.findAllUserCoursesByUserIdAndAccepted(currentUser.getId(),false);
+        List<UserCourse> userCourses = userCourseRepository.findAllUserCoursesByUserIdAndAcceptedOrderBySignUpDateDesc(currentUser.getId(), false);
         List<Course> courses = new ArrayList<>();
-        for(UserCourse userCourse : userCourses){
+        for (UserCourse userCourse : userCourses) {
             courses.add(userCourse.getCourse());
         }
-        model.addAttribute("courses",courses);
+        model.addAttribute("courses", courses);
+        model.addAttribute("userCourses", userCourses);
 
         return "student/pending_courses";
     }
-
-    @GetMapping("/student/settings")
-    public String settings(Model model) {
-        User currentuser = userRepository.findByEmail(SecurityContextHolder.getContext().getAuthentication().getName());
-        model.addAttribute("user", currentuser);
-        model.addAttribute("course", new Course());
-
-        return "settings";
-    }
+//
+//    @GetMapping("/settings")
+//    public String settings(Model model) {
+//        User currentuser = userRepository.findByEmail(SecurityContextHolder.getContext().getAuthentication().getName());
+//        model.addAttribute("user", currentuser);
+//        model.addAttribute("course", new Course());
+//
+//        return "settings";
+//    }
 
 }

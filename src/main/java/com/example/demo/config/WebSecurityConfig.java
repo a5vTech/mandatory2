@@ -39,6 +39,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/", "/login").permitAll()
                 .antMatchers("/teacher/createCourse").hasRole("TEACHER")
                 .antMatchers("/test").permitAll()
+                .antMatchers("testPassword").permitAll()
                 .antMatchers("/student/**").hasRole("STUDENT")
                 .antMatchers("/logout").permitAll()
                 .anyRequest().authenticated()
@@ -58,7 +59,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     public void configure(WebSecurity web) throws Exception {
         web
                 .ignoring()
-                .antMatchers( "/static/**", "/Style/**", "/JS/**","/Fonts/**","/Images/**");
+                .antMatchers("/static/**", "/Style/**", "/JS/**", "/Fonts/**", "/Images/**");
     }
 
 

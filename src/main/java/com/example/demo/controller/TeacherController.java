@@ -86,17 +86,17 @@ public class TeacherController {
         return "teacher/my_courses";
     }
 
+//
+//    @GetMapping("/settings")
+//    public String settings(Model model) {
+//        User currentuser = userRepository.findByEmail(SecurityContextHolder.getContext().getAuthentication().getName());
+//        model.addAttribute("user", currentuser);
+//        model.addAttribute("course", new Course());
+//
+//        return "settings";
+//    }
 
-    @GetMapping("/teacher/settings")
-    public String settings(Model model) {
-        User currentuser = userRepository.findByEmail(SecurityContextHolder.getContext().getAuthentication().getName());
-        model.addAttribute("user", currentuser);
-        model.addAttribute("course", new Course());
-
-        return "settings";
-    }
-
-    @PostMapping("/teacher/settings")
+    @PostMapping("/settings")
     public String settingsPost(@ModelAttribute User user) {
         User currentuser = userRepository.findByEmail(SecurityContextHolder.getContext().getAuthentication().getName());
         currentuser.setFirstName(user.getFirstName());
@@ -108,7 +108,7 @@ public class TeacherController {
             currentuser.setPassword(passwordEncoder.encode(user.getPassword()));
         }
         userRepository.save(currentuser);
-        return "redirect:/teacher/settings";
+        return "redirect:/settings";
     }
 
     @GetMapping("/teacher/course/{id}")
@@ -117,7 +117,9 @@ public class TeacherController {
         Course course = courseRepository.findCourse(id);
         model.addAttribute("course", course);
         List<User> teachers = CourseController.getCourseTeachers(course);
+        List<User> students = CourseController.getCourseStudents(course);
         model.addAttribute("teachers", teachers);
+        model.addAttribute("students", students);
 
 
         return "student/course";

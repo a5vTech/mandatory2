@@ -1,6 +1,8 @@
 package com.example.demo.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonView;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -21,10 +23,9 @@ public class User {
     private String password;
     private Boolean enabled = true;
     private String role;
-//    @Lob
+    //    @Lob
 //    @Column(name="image", nullable=false, columnDefinition="mediumblob")
 //    private byte[] image;
-
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "user")
     public Set<UserCourse> userCourses = new HashSet<>();
 

@@ -16,7 +16,7 @@
     </div>
     <!--Contents-->
     <div class="settingsBox">
-        <form method="post" th:action="@{/teacher/settings}">
+        <form method="post" th:action="@{/settings}">
             <div class="row">
                 <div class="col-md-6">
                     <label class="inputLabel">First name</label>
@@ -35,13 +35,13 @@
                 </div>
                 <div class="col-md-6">
                     <label class="inputLabel">Email</label>
-                    <input disabled type="text" class="textInput" th:field="${user.email}"/>
+                    <input readonly="readonly" type="text" class="textInput" th:field="${user.email}"/>
                 </div>
             </div>
             <div class="row">
                 <div class="col-md-6">
                     <label class="inputLabel">Old password</label>
-                    <input required="required" type="password" class="textInput" placeholder="********"/> <!-- TODO: fix password -->
+                    <input id="oldPass" required="required" type="password" class="textInput" placeholder="********"/> <!-- TODO: fix password -->
                     <div class="col-md-6"></div>
                 </div>
                 <div class="col-md-6">
@@ -96,7 +96,7 @@
 </div>
 <script type="text/javascript">
 
-    var oldPassword = "";
+    var oldPassword = document.getElementById("oldPass");
     var newPasswordInput = document.getElementById("newPassBox");
     var confirmPasswordInput = document.getElementById("confirmPassBox");
     var letter = document.getElementById("letter");
@@ -116,6 +116,25 @@
     confirmPasswordInput.onfocus = function () {
         document.getElementById("message").style.display = "block";
 
+    };
+
+    oldPassword.onkeyup = function () {
+        console.log("TYPING IN OLDPASS");
+        $.ajax({
+            url: "/testPassword",
+            method: "get",
+            data: {
+                oldPass: oldPassword.value
+            },
+            success: function (resp) {
+                if(resp === 'MATCH'){
+                    $('.enable').prop('disabled', false);
+                }else{
+                    $('.enable').prop('disabled', true);
+
+                }
+            }
+        });
     };
 
     // When clicked outside of password box

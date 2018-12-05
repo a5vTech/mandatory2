@@ -15,12 +15,12 @@
 <!--My courses-->
 <div class="container">
     <div class="text-center">
-        <h1 class="createCoursesHeader">My courses</h1>
+        <h1 class="myCoursesHeader">My courses</h1>
     </div>
-    <div class="createCourseBox">
+    <div class="myCoursesBox">
         <form method="post" th:action="@{/teacher/myCourses}">
             <div class="row text-center">
-                <div class="col">
+                <div class="col-md-4">
                     <label class="inputLabel">Name of the course (English)</label>
                 </div>
                 <div class="col">
@@ -38,10 +38,10 @@
 
             <!--Courses starts here-->
 
-            <a th:href="'/teacher/course/'+${course.id}"  th:each="course : ${courses}">
+            <a th:href="'/student/course/'+${course.id}"  th:each="course : ${courses}">
                 <div class="row text-center myCoursesRow">
 
-                    <p class="col textInput myCoursesText" th:text="${course.getCourseNameInEnglish()}">Full stack</p>
+                    <p class="col-md-4 textInput myCoursesText" th:text="${course.getCourseNameInEnglish()}">Full stack</p>
                     <p class="col textInput myCoursesText" th:text="${course.getSemester()}">2</p>
                     <p class="col textInput myCoursesText" th:text="${course.getClassCode()}">DAT17C</p>
                     <span class="col">

@@ -37,5 +37,16 @@ public class CourseController {
         return teachers;
     }
 
+    public static List<User> getCourseStudents(Course course) {
+        List<User> students = new ArrayList<>();
+
+        for (UserCourse userCourse : course.getUserCourses()) {
+            if (userCourse.getUser().getRole().equals("ROLE_STUDENT") && userCourse.getAccepted()) {
+                students.add(userCourse.getUser());
+            }
+        }
+        return students;
+    }
+
 
 }

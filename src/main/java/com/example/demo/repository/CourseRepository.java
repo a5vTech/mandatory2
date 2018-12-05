@@ -11,6 +11,7 @@ import java.util.List;
 public interface CourseRepository extends CrudRepository<Course, Long> {
 
     List<Course> findAll();
+    List<Course> findAllByOrderByCourseNameInEnglish();
     Course findByClassCode(String code);
 
     @Query(nativeQuery = true, value = "SELECT * FROM course WHERE id = ?1")
