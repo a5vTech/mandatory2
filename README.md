@@ -5,7 +5,14 @@ By Jesper and Mikkel
 # Deployment:
   - To access the application, follow the link (or click on the image) and enter one of the following credentials:
  
- 
+
+### Users
+
+| Email  | Password |   |   |   |
+|---|---|---|---|---|
+|   |   |   |   |   |
+|   |   |   |   |   |
+|   |   |   |   |   |
 
 
 
