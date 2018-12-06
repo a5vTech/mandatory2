@@ -55,8 +55,7 @@
 /CODE snippets
 ```
 $ sudo su
-$ Jesper Petersen [10:20]
-cd stack/apache-tomcat/conf/Catalina/localhost/
+$ cd stack/apache-tomcat/conf/Catalina/localhost/
 $ nano manager.xml
 ```
 ```
