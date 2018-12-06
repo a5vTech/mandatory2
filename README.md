@@ -2,7 +2,6 @@
 
 
 
-http://104.197.58.189
 
 # Features
 
@@ -48,7 +47,7 @@ http://104.197.58.189
 
 
 
-* [App](http://104.197.58.189)
+* [Link to app](http://104.197.58.189)
  
 [![N|](https://i.imgur.com/IjCgZpJ.jpg)](http://104.197.58.189)
 
