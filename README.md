@@ -2,6 +2,21 @@
 By Jesper and Mikkel
 
 
+# Deployment:
+  - To access the application, follow the link (or click on the image) and enter one of the following credentials:
+ 
+ 
+
+
+
+### Application 
+
+
+
+* [Link to app](http://104.197.58.189)
+ 
+[![N|](https://i.imgur.com/IjCgZpJ.jpg)](http://104.197.58.189)
+
 
 # Features
 
@@ -26,47 +41,5 @@ By Jesper and Mikkel
   - See all available courses
   - Change personal settings
 
-# Deployment:
-  - 
-  - 
-  - 
 
 
-
-> Deployment information
-> here
->
-> 
-> 
-> 
-> 
-
-
-
-### OTHER 
-
-
-
-* [Link to app](http://104.197.58.189)
- 
-[![N|](https://i.imgur.com/IjCgZpJ.jpg)](http://104.197.58.189)
-
-
-/CODE snippets
-```
-$ sudo su
-$ cd stack/apache-tomcat/conf/Catalina/localhost/
-$ nano manager.xml
-```
-```
-<Context privileged="true" antiResourceLocking="false"
-        docBase="${catalina.home}/webapps/manager">
-   <Valve className="org.apache.catalina.valves.RemoteAddrValve" allow="^.*$" />
-</Context>
-```
-For production environments...
-
-```sh
-$ 
-$ 
-```
