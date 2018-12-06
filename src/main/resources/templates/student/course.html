@@ -43,7 +43,6 @@
                 </div>
                 <div class="col-md-6">
                     <label class="inputLabel">Mandatory or Elective</label>
-                    <!--<input disabled type="text" class="textInput" th:field="${course.mandatory}"/>-->
                     <select disabled id="mandatory" class="textInput" data-placeholder="Mandatory or elective"
                             th:field="${course.mandatory}">
                         <option id="tester" value="true">Mandatory</option>
@@ -179,7 +178,7 @@
             </div>
             <div class="row">
                 <div class="col-md-6">
-                    <label class="inputLabel">Teachers</label>
+                    <label class="inputLabel">Teachers and students</label>
                     <select disabled multiple class="textInput multiSelect multiSelectBox" name="teachersListString">
                         <option class="darkBlue" th:if="${teachers.size()} > 0" disabled>Teachers</option>
                         <option class="darkBlue" th:if="${teachers.size()} == 0">No teachers assigned</option>

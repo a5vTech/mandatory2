@@ -10,9 +10,9 @@
 <nav th:replace="fragments/navbar :: navbar"></nav>
 <div class="container">
     <div class="text-center">
-        <h1 class="createCoursesHeader">Create user</h1>
+        <h1 class="createUserHeader">Create user</h1>
     </div>
-    <div class="createCourseBox">
+    <div class="createUserBox">
         <form method="post" th:action="@{/admworker/createUser}">
             <div class="row">
                 <div class="col-md-6">
@@ -39,7 +39,12 @@
             <div class="row">
                 <div class="col-md-6">
                     <label class="inputLabel">Role</label>
-                    <input required type="text" class="textInput" th:field="${user.role}"/>
+                    <select th:field="${user.role}" required="required" class="textInput">
+                        <option th:value="ROLE_STUDENT">Student</option>
+                        <option th:value="ROLE_TEACHER">Teacher</option>
+                        <option th:value="ROLE_ADMWORKER">Administration worker</option>
+                    </select>
+
                 </div>
                 <div class="col-md-6">
                     <label class="inputLabel">Password</label>
@@ -48,7 +53,7 @@
             </div>
             <div class="row">
                 <div class="col-md-12">
-                    <button type="submit" class="createCourseButton hoverAnimation">Create user<i
+                    <button type="submit" class="createCourseButton createUserButton hoverAnimation">Create user<i
                             class="fas fa-arrow-right faArrow"></i></button>
                 </div>
             </div>
