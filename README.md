@@ -7,19 +7,22 @@ http://104.197.58.189
 # Features
 
 ##### Administration worker
+  - Login with credentials and log out
   - Create user
   - Handle course sign up requests
   - See all users signed up for specific course
   - Change personal settings
 
 ##### Teacher
+  - Login with credentials and log out
   - Create course
   - Edit course
   - See all assigned courses
   - Change personal settings
 
 ##### Student
-  - Sign up for course
+  - Login with credentials and log out
+  - Sign up for courses
   - See courses pending for acceptance
   - See all available courses
   - Change personal settings
