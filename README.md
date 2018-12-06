@@ -8,11 +8,13 @@ By Jesper and Mikkel
 
 ### Users
 
-| Email  | Password | 
+| Email  | Password | Role |
 |---|---|
-| adm@kea.dk  | 1234  |
-|   |   |
-|   |   |
+| adm@kea.dk  | 1234  | Administration worker |
+| coag.kea.dk | 1234  | Teacher
+| daka.kea.dk | 1234  | Teacher
+| jesp688a@stud.kea.dk  |  1234 | Student |
+| mikk065y@stud.kea.dk  |  1234 | Student |
 
 
 
