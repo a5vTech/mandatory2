@@ -8,11 +8,11 @@ By Jesper and Mikkel
 
 ### Users
 
-| Email  | Password |   |   |   |
-|---|---|---|---|---|
-|   |   |   |   |   |
-|   |   |   |   |   |
-|   |   |   |   |   |
+| Email  | Password | 
+|---|---|
+| adm@kea.dk  | 1234  |
+|   |   |
+|   |   |
 
 
 
