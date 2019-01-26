@@ -6,17 +6,7 @@ By Jesper and Mikkel
   - To access the application, follow the link (or click on the image) and enter one of the following credentials:
  
 
-### Users
-Passwords have been removed from this table due to it being a demo application 
-and is no longer running on the remote host
 
-| Email  | Password | Role |
-|---|---|---|
-| adm@kea.dk  |  | Administration worker |
-| coag.kea.dk |  | Teacher |
-| daka.kea.dk |  | Teacher |
-| jesp688a@stud.kea.dk  |  | Student |
-| mikk065y@stud.kea.dk  |  | Student |
 
 
 
