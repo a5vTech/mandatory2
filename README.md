@@ -7,14 +7,16 @@ By Jesper and Mikkel
  
 
 ### Users
+Passwords have been removed from this table due to it being a demo application 
+and is no longer running on the remote host
 
 | Email  | Password | Role |
 |---|---|---|
-| adm@kea.dk  | 1234  | Administration worker |
-| coag.kea.dk | 1234  | Teacher |
-| daka.kea.dk | 1234  | Teacher |
-| jesp688a@stud.kea.dk  |  1234 | Student |
-| mikk065y@stud.kea.dk  |  1234 | Student |
+| adm@kea.dk  |  | Administration worker |
+| coag.kea.dk |  | Teacher |
+| daka.kea.dk |  | Teacher |
+| jesp688a@stud.kea.dk  |  | Student |
+| mikk065y@stud.kea.dk  |  | Student |
 
 
 
